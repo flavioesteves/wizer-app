@@ -9,7 +9,7 @@ up:
 	@echo "Docker images started!"
 
 ## up_build: stops docker-compose (if running), builds all projects and starts docker compose
-up_build: build_broker build_auth build_listener
+up_build: build_broker build_auth build_listener build_front
 	@echo "Stopping docker images (if running...)"
 	docker compose down
 	@echo "Building (when required) and starting docker images..."
@@ -31,7 +31,7 @@ build_broker:
 ## build_auth: builds the auth binary as a linux executable
 build_auth:
 	@echo "Building auth binary..."
-	cd ../auth-service && env GOOS=linux CGO_ENABLED=0 go build -o bin/${AUTH_BINARY} ./cmd/api
+	cd ../authentication-service && env GOOS=linux CGO_ENABLED=0 go build -o bin/${AUTH_BINARY} ./cmd/api
 	@echo "Build Auth done!"
 
 ## build_listener: builds the listener binary as a linux executable
@@ -39,6 +39,11 @@ build_listener:
 	@echo "Building listener binary..."
 	cd ../listener-service && env GOOS=linux CGO_ENABLED=0 go build -o bin/${LISTENER_BINARY} .
 	@echo "Build listener done!"
+
+build_front:
+	@echo "Building frontend in TS react..."
+	cd ../wizer-frontend && npm run build
+	@echo "Build frontend done!"
 
 
 
