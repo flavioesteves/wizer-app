@@ -1,15 +1,13 @@
-package main
+package v1
 
 import (
 	"net/http"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-
-	"github.com/flavioesteves/wizer-app/broker/cmd/api/v1"
 )
 
-func (app *Config) routes() http.Handler {
+func Routes() http.Handler {
 	router := gin.Default()
 
 	router.Use(cors.New(cors.Config{
@@ -22,7 +20,7 @@ func (app *Config) routes() http.Handler {
 	}))
 
 	// TODO: remove just for dev
-	router.GET("/healthcheck", v1.GetAppStatus)
+	router.GET("/healthcheck", GetAppStatus)
 
 	return router
 }

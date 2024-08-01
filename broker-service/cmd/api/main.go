@@ -6,24 +6,28 @@ import (
 	"net/http"
 
 	"github.com/redis/go-redis/v9"
+
+	"github.com/flavioesteves/wizer-app/broker/api/v1"
+	"github.com/flavioesteves/wizer-app/broker/internal/redis"
 )
 
-const WEB_PORT = "8080"   //TODO: yml config file
-const REDIS_PORT = "6379" //TODO: yml config file
+const WEB_PORT = "8080" //TODO: yml config file
 
 type Config struct {
 	RedisClient *redis.Client
+	Handler     http.Handler
 }
 
 func main() {
 
 	app := Config{
-		RedisClient: initRedisServer(),
+		RedisClient: internal.InitRedisServer(),
+		Handler:     v1.Routes(),
 	}
 
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%s", WEB_PORT),
-		Handler: app.routes(),
+		Handler: app.Handler,
 	}
 
 	err := srv.ListenAndServe()
@@ -31,18 +35,4 @@ func main() {
 	if err != nil {
 		log.Panic(err)
 	}
-
-}
-
-func initRedisServer() *redis.Client {
-
-	redisOptions := redis.Options{
-		Addr:     fmt.Sprintf("redis:%s", REDIS_PORT),
-		Password: "", //TODO: yml config file
-		DB:       0,
-	}
-
-	redisClient := redis.NewClient(&redisOptions)
-
-	return redisClient
 }
