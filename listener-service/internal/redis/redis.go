@@ -9,7 +9,6 @@ const REDIS_PORT = "6379" //TODO: yml config file
 
 // Create and initialize redis client
 func InitRedisServer() *redis.Client {
-
 	redisOptions := redis.Options{
 		Addr:     fmt.Sprintf("redis:%s", REDIS_PORT),
 		Password: "", //TODO: yml config file

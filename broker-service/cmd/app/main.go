@@ -19,7 +19,6 @@ type Config struct {
 }
 
 func main() {
-
 	app := Config{
 		RedisClient: internal.InitRedisServer(),
 		Handler:     v1.Routes(),
