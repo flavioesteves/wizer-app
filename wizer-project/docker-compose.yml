@@ -32,10 +32,14 @@ services:
       mode: replicated
       replicas: 1
 
-  listener-service:
+
+  user-service:
     build:
-      context: ./../listener-service
-      dockerfile: ./../listener-service/listener-service.dockerfile
+      context: ./../user-service
+      dockerfile: ./../user-service/user-service.dockerfile
+    restart: always
+    ports:
+      - "50051:50051" 
     deploy:
       mode: replicated
       replicas: 1

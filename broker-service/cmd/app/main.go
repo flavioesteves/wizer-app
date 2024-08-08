@@ -8,7 +8,7 @@ import (
 	"github.com/redis/go-redis/v9"
 
 	"github.com/flavioesteves/wizer-app/broker/api/v1"
-	"github.com/flavioesteves/wizer-app/broker/internal/redis"
+	"github.com/flavioesteves/wizer-app/broker/internal/redis-service"
 )
 
 const WEB_PORT = "8080" //TODO: yml config file
@@ -20,7 +20,7 @@ type Config struct {
 
 func main() {
 	app := Config{
-		RedisClient: internal.InitRedisServer(),
+		RedisClient: redisservice.InitRedisServer(),
 		Handler:     v1.Routes(),
 	}
 

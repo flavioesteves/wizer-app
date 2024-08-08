@@ -1,6 +1,7 @@
 BROKER_BINARY=brokerApp
 AUTH_BINARY= authApp
 LISTENER_BINARY = listenerApp
+USER_BINARY = userApp
 
 ## up: starts all containers in the background without forcing build
 up:
@@ -9,7 +10,7 @@ up:
 	@echo "Docker images started!"
 
 ## up_build: stops docker-compose (if running), builds all projects and starts docker compose
-up_build: build_broker build_auth build_listener build_front
+up_build: build_broker build_auth build_user build_front
 	@echo "Stopping docker images (if running...)"
 	docker compose down
 	@echo "Building (when required) and starting docker images..."
@@ -34,11 +35,10 @@ build_auth:
 	cd ../authentication-service && env GOOS=linux CGO_ENABLED=0 go build -o bin/${AUTH_BINARY} ./cmd/app
 	@echo "Build Auth done!"
 
-## build_listener: builds the listener binary as a linux executable
-build_listener:
-	@echo "Building listener binary..."
-	cd ../listener-service && env GOOS=linux CGO_ENABLED=0 go build -o bin/${LISTENER_BINARY} .
-	@echo "Build listener done!"
+build_user:
+	@echo "Building User Service binary..."
+	cd ../user-service && env GOOS=linux CGO_ENABLED=0 go build -o bin/${USER_BINARY} ./cmd/app
+	@echo "Build User done!"
 
 build_front:
 	@echo "Building frontend in TS react..."
@@ -70,13 +70,13 @@ SHELL := bash
 	RM_F_CMD = rm -f
 	RM_RF_CMD = ${RM_F_CMD} -r
 
-project := broker-service listener-servive auth-service
+project := broker-service auth-service user-service
 
 proto-all: $(project) ## generate Pbs
 
 proto broker-service: $@ ## Generate Pbs
 proto auth-service: $@ ## Generate Pbs
-proto listener-service: $@ ## Generate Pbs
+proto user-service: $@ ## Generate Pbs
 
 $(project):
 	@${CHECK_DIR_CMD}
