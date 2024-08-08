@@ -15,5 +15,4 @@ func RegisterUserRoutes(rg *gin.RouterGroup) {
 	fmt.Printf("Connect: %v", sc)
 
 	rg.POST("", func(c *gin.Context) { CreateUser(c, sc) })
-	rg.GET("", Test)
 }

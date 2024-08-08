@@ -34,7 +34,6 @@ func CreateUser(c *gin.Context, sc pb.UserServiceClient) {
 	if err != nil {
 		fmt.Printf("Unexpected error %v\n", err)
 	}
-
 	fmt.Printf("User was been created: %v\n", res)
 
 	c.IndentedJSON(http.StatusOK, res)
