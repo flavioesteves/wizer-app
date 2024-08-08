@@ -8,8 +8,10 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 )
 
-func Connect(addr string) pb.UserServiceClient {
-	conn, err := grpc.NewClient(addr, grpc.WithTransportCredentials(insecure.NewCredentials()))
+var USER_SERVICE_HOST = "user-service:50051"
+
+func Connect() pb.UserServiceClient {
+	conn, err := grpc.NewClient(USER_SERVICE_HOST, grpc.WithTransportCredentials(insecure.NewCredentials()))
 
 	if err != nil {
 		fmt.Printf("Failed to connect: %v\n", err)
