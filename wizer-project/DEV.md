@@ -20,3 +20,6 @@
 * make proto-all
 * make [SERVICE]: broker-service, user-service
 
+
+# Migrate tool for Database
+[migrate](https://github.com/golang-migrate/migrate/tree/master/cmd/migrate)
