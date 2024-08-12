@@ -8,9 +8,9 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
-	"github.com/flavioesteves/wizer-app/user/cmd/app/handler"
-	"github.com/flavioesteves/wizer-app/user/internal/database"
-	pb "github.com/flavioesteves/wizer-app/user/proto"
+	"github.com/flavioesteves/wizer-app/profile/cmd/app/handler"
+	"github.com/flavioesteves/wizer-app/profile/internal/database"
+	pb "github.com/flavioesteves/wizer-app/profile/proto"
 )
 
 var USER_SERVICE_HOST = "0.0.0.0:50051"
@@ -34,7 +34,7 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	pb.RegisterUserServiceServer(s, serverConfig)
+	pb.RegisterProfileServiceServer(s, serverConfig)
 	reflection.Register(s)
 
 	if err = s.Serve(listen); err != nil {

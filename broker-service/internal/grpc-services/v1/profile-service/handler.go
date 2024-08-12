@@ -12,8 +12,8 @@ import (
 	pb "github.com/flavioesteves/wizer-app/broker/proto"
 )
 
-func CreateUser(c *gin.Context, sc pb.UserServiceClient) {
-	var requestUser models.RequestUser
+func CreateUser(c *gin.Context, sc pb.ProfileServiceClient) {
+	var requestUser models.RequestProfile
 
 	if err := c.BindJSON(&requestUser); err != nil {
 		//TODO: Replace this logs with a proper log service
@@ -21,7 +21,7 @@ func CreateUser(c *gin.Context, sc pb.UserServiceClient) {
 		return
 	}
 
-	newUser := &pb.User{
+	newUser := &pb.Profile{
 		Id:       requestUser.Id,
 		Email:    requestUser.Email,
 		Password: requestUser.Password,
@@ -30,7 +30,7 @@ func CreateUser(c *gin.Context, sc pb.UserServiceClient) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	res, err := sc.CreateUser(ctx, newUser)
+	res, err := sc.CreateProfile(ctx, newUser)
 	if err != nil {
 		fmt.Printf("Unexpected error %v\n", err)
 	}

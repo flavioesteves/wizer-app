@@ -6,7 +6,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
-	"github.com/flavioesteves/wizer-app/broker/internal/grpc-services/v1/user-service"
+	"github.com/flavioesteves/wizer-app/broker/internal/grpc-services/v1/profile-service"
 )
 
 func Routes() http.Handler {
@@ -26,7 +26,7 @@ func Routes() http.Handler {
 	router.GET("/healthcheck", GetAppStatus)
 
 	// User Service
-	userRoutingGroup := router.Group("/v1/users")
+	userRoutingGroup := router.Group("/v1/profiles")
 	userservice.RegisterUserRoutes(userRoutingGroup)
 
 	return router

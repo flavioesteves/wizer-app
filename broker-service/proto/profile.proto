@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package profile;
+
+option  go_package = "github.com/flavioesteves/wizer-app/broker/proto";
+
+import "google/protobuf/empty.proto";
+
+message Profile {
+  string id = 1;
+  string email =2;
+  string password=3;
+}
+
+message ProfileId {
+  string id =1;
+}
+
+
+service ProfileService {
+  rpc CreateProfile (Profile) returns (Profile);
+  rpc GetProfile (ProfileId) returns(Profile);
+  rpc UpdateProfile (Profile) returns (google.protobuf.Empty);
+  rpc DeleteProfile (ProfileId) returns (google.protobuf.Empty);
+  rpc ListProfilers (google.protobuf.Empty) returns (stream Profile);
+}

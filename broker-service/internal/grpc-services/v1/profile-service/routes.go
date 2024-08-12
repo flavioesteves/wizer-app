@@ -5,7 +5,7 @@ import (
 )
 
 func RegisterUserRoutes(rg *gin.RouterGroup) {
-	userServiceClient := Connect()
+	profileServiceClient := Connect()
 
-	rg.POST("", func(c *gin.Context) { CreateUser(c, userServiceClient) })
+	rg.POST("", func(c *gin.Context) { CreateUser(c, profileServiceClient) })
 }

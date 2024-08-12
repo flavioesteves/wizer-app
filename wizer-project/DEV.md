@@ -7,7 +7,8 @@
 * TERMINAL: curl --header "Content-Type: application/json" \
     -- request POST \
     -- data '{"key":"value}' \
-    "BROKER_SERVICE_ENDPOINT"
+    "BROKER_SERVICE_ENDPOINT" 
+    example: BROKER_SERVICE_ENDPOINT = http://0.0.0.0:8080/v1/profiles
 * GUI: Postman
 
 
