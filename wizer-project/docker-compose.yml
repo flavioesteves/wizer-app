@@ -5,7 +5,9 @@ services:
       dockerfile: ./../wizer-frontend/wizer-frontend.dockerfile
     restart: always
     ports:
-      - "3000:3000"
+      - "5173:5173"
+    volumes:
+      - ./src:/app/src
     deploy:
       mode: replicated
       replicas: 1
@@ -47,7 +49,7 @@ services:
       DSN: "host=postgres port=5432 user=postgres password=password dbname=wizer_app sslmode=disable timezone=UTC connect_timeout=5"
   
   postgres:
-    image: 'postgres:14.2'
+    image: 'postgres:16-alpine'
     ports:
       - "5432:5432"
     restart: always
