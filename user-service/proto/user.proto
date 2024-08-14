@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package user;
+
+option  go_package = "github.com/flavioesteves/wizer-app/user/proto";
+
+import "google/protobuf/empty.proto";
+
+
+message User {
+  string user_id =1;
+  string email =2;
+  string password_hasg=3;
+  enum Role {
+    TRAINER=0;
+    TRAINEE=1;
+  }
+}
+
+message CreateUserRequest {
+  User user =1;
+}
+
+message GetUserRequest {
+  string user_id =1;
+}
+
+message UpdateUserRequest {
+  User user =1;
+}
+
+message DeleteUserRequest {
+  string user_id =1;
+}
+
+message GetAllUsersRequest {
+// Potential parameters for filtering, pagination
+}
+
+message UserResponse {
+  User user =1;
+}
+
+message GetAllUsersResponse {
+  repeated User users =1;
+}
+
+service UserService {
+  rpc CreateUser (CreateUserRequest) returns (UserResponse);
+  rpc GetUSer (GetUserRequest) returns(UserResponse);
+  rpc UpdateUser (UpdateUserRequest) returns(UserResponse);
+  rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty);
+  rpc GetAllUsers (GetAllUsersRequest) returns (GetAllUsersResponse);
+}

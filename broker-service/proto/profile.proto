@@ -7,20 +7,48 @@ option  go_package = "github.com/flavioesteves/wizer-app/broker/proto";
 import "google/protobuf/empty.proto";
 
 message Profile {
-  string id = 1;
-  string email =2;
-  string password=3;
+  string profile_id = 1;
+  string user_id = 2;
+  string gender = 3;
+  int32 birth_year = 4;
+  int32 height_cm = 5;
+  int32 weight_kg = 6;
+  string body_fat_percentage = 7;
+  string goal = 8;
 }
 
-message ProfileId {
-  string id =1;
+message CreateProfileRequest {
+  Profile profile = 1;
 }
 
+message GetProfileRequest {
+  string profile_id = 1;
+}
+
+message UpdateProfileRequest {
+  Profile profile = 1;
+}
+
+message DeleteProfileRequest {
+  string profile_id = 1;
+}
+
+message GetAllProfilesRequest {
+// Potential parameters for filtering, pagination
+}
+
+message GetAllProfilesResponse {
+  repeated Profile profiles = 1;
+}
+
+message ProfileResponse {
+  Profile profile = 1;
+}
 
 service ProfileService {
-  rpc CreateProfile (Profile) returns (Profile);
-  rpc GetProfile (ProfileId) returns(Profile);
-  rpc UpdateProfile (Profile) returns (google.protobuf.Empty);
-  rpc DeleteProfile (ProfileId) returns (google.protobuf.Empty);
-  rpc ListProfilers (google.protobuf.Empty) returns (stream Profile);
+  rpc CreateProfile (CreateProfileRequest) returns (ProfileResponse);
+  rpc GetProfile (GetProfileRequest) returns(ProfileResponse);
+  rpc UpdateProfile (UpdateProfileRequest) returns (ProfileResponse);
+  rpc DeleteProfile (DeleteProfileRequest) returns (google.protobuf.Empty);
+  rpc GetAllProfiles (GetAllProfilesRequest) returns (GetAllProfilesResponse);
 }

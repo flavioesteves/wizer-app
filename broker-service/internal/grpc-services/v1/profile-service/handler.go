@@ -13,24 +13,29 @@ import (
 )
 
 func CreateUser(c *gin.Context, sc pb.ProfileServiceClient) {
-	var requestUser models.RequestProfile
+	var requestProfile models.RequestProfile
 
-	if err := c.BindJSON(&requestUser); err != nil {
+	if err := c.BindJSON(&requestProfile); err != nil {
 		//TODO: Replace this logs with a proper log service
 		fmt.Printf("Error to create a user in user_handler %v\n", err)
 		return
 	}
 
-	newUser := &pb.Profile{
-		Id:       requestUser.Id,
-		Email:    requestUser.Email,
-		Password: requestUser.Password,
+	newProfile := &pb.Profile{
+		ProfileId:         requestProfile.ProfileID,
+		UserId:            requestProfile.UserID,
+		Gender:            requestProfile.Gender,
+		BirthYear:         requestProfile.BirthYear,
+		HeightCm:          requestProfile.HeightCm,
+		WeightKg:          requestProfile.WeightKg,
+		BodyFatPercentage: requestProfile.BodyFatPercentage,
+		Goal:              requestProfile.Goal,
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	res, err := sc.CreateProfile(ctx, newUser)
+	res, err := sc.CreateProfile(ctx, &pb.CreateProfileRequest{Profile: newProfile})
 	if err != nil {
 		fmt.Printf("Unexpected error %v\n", err)
 	}

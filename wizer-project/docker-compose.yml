@@ -34,6 +34,18 @@ services:
       mode: replicated
       replicas: 1
 
+  user-service:
+    build:
+      context: ./../user-service
+      dockerfile: ./../user-service/user-service.dockerfile
+    restart: always
+    ports:
+      - "50052:50052"
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      DSN: "host=postgres port=5432 user=postgres password=password dbname=wizer_app sslmode=disable timezone=UTC connect_timeout=5"
 
   profile-service:
     build:
