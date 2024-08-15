@@ -1,4 +1,4 @@
-package userservice
+package profileservice
 
 import (
 	"context"
@@ -12,16 +12,16 @@ import (
 	pb "github.com/flavioesteves/wizer-app/broker/proto"
 )
 
-func CreateUser(c *gin.Context, sc pb.ProfileServiceClient) {
+func UpdateProfile(c *gin.Context, sc pb.ProfileServiceClient) {
 	var requestProfile models.RequestProfile
 
 	if err := c.BindJSON(&requestProfile); err != nil {
-		//TODO: Replace this logs with a proper log service
-		fmt.Printf("Error to create a user in user_handler %v\n", err)
+		//TODO: Replace those logs with a proper log service
+		fmt.Printf("Error to create a profile in profile_handler %v\n", err)
 		return
 	}
 
-	newProfile := &pb.Profile{
+	updateProfile := &pb.Profile{
 		ProfileId:         requestProfile.ProfileID,
 		UserId:            requestProfile.UserID,
 		Gender:            requestProfile.Gender,
@@ -35,11 +35,11 @@ func CreateUser(c *gin.Context, sc pb.ProfileServiceClient) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	res, err := sc.CreateProfile(ctx, &pb.CreateProfileRequest{Profile: newProfile})
+	res, err := sc.UpdateProfile(ctx, &pb.UpdateProfileRequest{Profile: updateProfile})
 	if err != nil {
 		fmt.Printf("Unexpected error %v\n", err)
 	}
-	fmt.Printf("User was been created: %v\n", res)
+	fmt.Printf("Profile was been updated: %v\n", res)
 
-	c.IndentedJSON(http.StatusOK, res)
+	c.JSON(http.StatusOK, res)
 }

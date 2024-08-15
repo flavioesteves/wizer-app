@@ -10,3 +10,10 @@ type RequestProfile struct {
 	BodyFatPercentage string `json:"body_fat_percentage"`
 	Goal              string `json:"goal"`
 }
+
+type RequestUser struct {
+	UserID       string `json:"user_id"`
+	Email        string `json:"email"`
+	PasswordHash string `json:"password_hash"`
+	Role         string `json:"role"`
+}
