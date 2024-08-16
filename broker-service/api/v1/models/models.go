@@ -12,8 +12,8 @@ type RequestProfile struct {
 }
 
 type RequestUser struct {
-	UserID       string `json:"user_id"`
-	Email        string `json:"email"`
-	PasswordHash string `json:"password_hash"`
-	Role         string `json:"role"`
+	UserID   string `json:"user_id"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
+	Role     string `json:"role"`
 }

@@ -28,10 +28,10 @@ func CreateUser(c *gin.Context, sc pb.UserServiceClient) {
 	}
 
 	newUser := &pb.User{
-		UserId:       requestUser.UserID,
-		Email:        requestUser.Email,
-		PasswordHasg: requestUser.PasswordHash,
-		Role:         userRole,
+		UserId:   requestUser.UserID,
+		Email:    requestUser.Email,
+		Password: requestUser.Password,
+		Role:     userRole,
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)

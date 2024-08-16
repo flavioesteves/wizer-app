@@ -10,7 +10,7 @@ import "google/protobuf/empty.proto";
 message User {
   string user_id = 1;
   string email = 2;
-  string password_hasg = 3;
+  string password = 3;
   enum Role {
     UNSPECIFIED = 0;
     TRAINER = 1;
