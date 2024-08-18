@@ -6,7 +6,6 @@ import (
 
 	db "github.com/flavioesteves/wizer-app/user/internal/database"
 	pb "github.com/flavioesteves/wizer-app/user/proto"
-	_ "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 func (s *ServerConfig) CreateUser(ctx context.Context, in *pb.CreateUserRequest) (*pb.UserResponse, error) {

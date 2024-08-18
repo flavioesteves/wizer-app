@@ -48,3 +48,5 @@ func Insert(db *sql.DB, user *pb.User) (*pb.User, error) {
 
 	return newUser, err
 }
+
+
