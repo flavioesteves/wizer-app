@@ -1,7 +1,7 @@
 package models
 
 type RequestProfile struct {
-	ProfileID         string `json:"profile_id"`
+	Id                string `json:"id"`
 	UserID            string `json:"user_id"`
 	Gender            string `json:"gender"`
 	BirthYear         int32  `json:"birth_year"`
@@ -12,7 +12,7 @@ type RequestProfile struct {
 }
 
 type RequestUser struct {
-	UserID   string `json:"user_id"`
+	Id       string `json:"id"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
 	Role     string `json:"role"`

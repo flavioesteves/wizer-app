@@ -28,7 +28,7 @@ func UpdateUser(c *gin.Context, sc pb.UserServiceClient) {
 	}
 
 	updateUser := &pb.User{
-		UserId:   requestUser.UserID,
+		Id:       requestUser.Id,
 		Email:    requestUser.Email,
 		Password: requestUser.Password,
 		Role:     userRole,
