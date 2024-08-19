@@ -6,12 +6,19 @@ import (
 	"errors"
 	"time"
 
+	"golang.org/x/crypto/bcrypt"
+
 	pb "github.com/flavioesteves/wizer-app/user/proto"
 )
 
 func Update(db *sql.DB, user *pb.User) (*pb.User, error) {
 
 	updatedUser := &pb.User{}
+
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), 12)
+	if err != nil {
+		return nil, err
+	}
 
 	query := `
     UPDATE users
@@ -22,7 +29,7 @@ func Update(db *sql.DB, user *pb.User) (*pb.User, error) {
 
 	args := []any{
 		user.Email,
-		user.Password,
+		hashedPassword,
 		user.Role,
 		updatedAt,
 	}
@@ -30,7 +37,11 @@ func Update(db *sql.DB, user *pb.User) (*pb.User, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	err := db.QueryRowContext(ctx, query, args...).Scan(&updatedUser.Id, &updatedUser.Email, &updatedUser.Password, &updatedUser.Role, &updatedUser.CreatedAt, &updatedUser.UpdatedAt)
+	row := db.QueryRowContext(ctx, query, args...)
+
+	err = row.Scan(&updatedUser.Id, &updatedUser.Email, &updatedUser.Password, &updatedUser.Role, &updatedUser.CreatedAt, &updatedUser.UpdatedAt)
+
+	//BUG
 
 	if err != nil {
 		switch {
@@ -42,5 +53,5 @@ func Update(db *sql.DB, user *pb.User) (*pb.User, error) {
 		}
 	}
 
-	return user, nil
+	return updatedUser, nil
 }

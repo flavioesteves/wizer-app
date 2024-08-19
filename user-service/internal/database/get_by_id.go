@@ -12,17 +12,16 @@ import (
 func Get(db *sql.DB, id string) (*pb.User, error) {
 
 	query := `
-    SELECT email, password, role, created_atm updated_at
+    SELECT id, email, password, role, created_at, updated_at 
     FROM users
-    WHERE id = $1
-  `
+    WHERE id = $1`
 
 	user := &pb.User{}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	err := db.QueryRowContext(ctx, query).Scan(
+	err := db.QueryRowContext(ctx, query, id).Scan(
 		&user.Id,
 		&user.Email,
 		&user.Password,

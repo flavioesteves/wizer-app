@@ -7,18 +7,17 @@ import (
 	"time"
 )
 
-func Delete(db *sql.DB, userId string) error {
+func Delete(db *sql.DB, id string) error {
 
-	//TODO: Validation of the size og id
+	//TODO: Validation of the size of id
 
-	query := `
-    DELETE FROM users
-    WHERE id =$1`
+	query := `DELETE FROM users
+    WHERE id=$1`
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	result, err := db.ExecContext(ctx, query)
+	result, err := db.ExecContext(ctx, query, id)
 	if err != nil {
 		return err
 	}

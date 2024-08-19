@@ -27,12 +27,12 @@ func GetAll(db *sql.DB) ([]*pb.User, error) {
 		user := &pb.User{}
 
 		err := rows.Scan(
-			user.Id,
-			user.Email,
-			user.Password,
-			user.Role,
-			user.CreatedAt,
-			user.UpdatedAt,
+			&user.Id,
+			&user.Email,
+			&user.Password,
+			&user.Role,
+			&user.CreatedAt,
+			&user.UpdatedAt,
 		)
 		if err != nil {
 			log.Println("Error scanning ", err)
