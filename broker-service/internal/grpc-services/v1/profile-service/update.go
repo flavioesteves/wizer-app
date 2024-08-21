@@ -22,7 +22,7 @@ func UpdateProfile(c *gin.Context, sc pb.ProfileServiceClient) {
 	}
 
 	updateProfile := &pb.Profile{
-		ProfileId:         requestProfile.Id,
+		Id:                requestProfile.Id,
 		UserId:            requestProfile.UserID,
 		Gender:            requestProfile.Gender,
 		BirthYear:         requestProfile.BirthYear,

@@ -16,7 +16,7 @@ func GetProfile(c *gin.Context, sc pb.ProfileServiceClient) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	res, err := sc.GetProfile(ctx, &pb.GetProfileRequest{ProfileId: profileId})
+	res, err := sc.GetProfile(ctx, &pb.GetProfileRequest{Id: profileId})
 	if err != nil {
 		fmt.Printf("Unexpected error %v\n", err)
 	}

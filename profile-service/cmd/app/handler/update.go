@@ -8,10 +8,10 @@ import (
 	pb "github.com/flavioesteves/wizer-app/profile/proto"
 )
 
-func (s *ServerConfig) CreateProfile(ctx context.Context, in *pb.CreateProfileRequest) (*pb.ProfileResponse, error) {
-	fmt.Printf("CreateProfile was invoked with %v\n", in)
+func (s *ServerConfig) UpdateProfile(ctx context.Context, in *pb.UpdateProfileRequest) (*pb.ProfileResponse, error) {
+	fmt.Printf("UpdateProfile was invoked with %v\n", in)
 
-	newProfile := &pb.Profile{
+	updatedProfile := &pb.Profile{
 		Id:                in.Profile.Id,
 		UserId:            in.Profile.UserId,
 		Gender:            in.Profile.Gender,
@@ -22,9 +22,9 @@ func (s *ServerConfig) CreateProfile(ctx context.Context, in *pb.CreateProfileRe
 		Goal:              in.Profile.Goal,
 	}
 
-	profile, err := db.Insert(s.db, newProfile)
+	profile, err := db.Update(s.db, updatedProfile)
 	if err != nil {
-		fmt.Printf("Failed to create the profile: %v\n", err)
+		fmt.Printf("Failed to update the profile: %v\n", err)
 	}
 
 	return &pb.ProfileResponse{

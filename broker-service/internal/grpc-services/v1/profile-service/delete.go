@@ -17,7 +17,7 @@ func DeleteProfile(c *gin.Context, sc pb.ProfileServiceClient) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	res, err := sc.DeleteProfile(ctx, &pb.DeleteProfileRequest{ProfileId: profileId})
+	res, err := sc.DeleteProfile(ctx, &pb.DeleteProfileRequest{Id: profileId})
 
 	if err != nil {
 		fmt.Printf("Unexpected error %v\n", err)

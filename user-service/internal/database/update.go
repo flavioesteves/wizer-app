@@ -23,7 +23,8 @@ func Update(db *sql.DB, user *pb.User) (*pb.User, error) {
 	query := `
     UPDATE users
     SET email = $1, password = $2, role = $3, updated_at= $4
-    RETURNING id, email, password, role, created_at, updated_at`
+    WHERE id = $5
+    RETURNING id, email,password, role, created_at, updated_at`
 
 	updatedAt := time.Now().Format(time.RFC3339Nano)
 
@@ -32,6 +33,7 @@ func Update(db *sql.DB, user *pb.User) (*pb.User, error) {
 		hashedPassword,
 		user.Role,
 		updatedAt,
+		user.Id,
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)

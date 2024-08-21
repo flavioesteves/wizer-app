@@ -11,7 +11,7 @@ import (
 	pb "github.com/flavioesteves/wizer-app/user/proto"
 )
 
-const DB_TIMEOUT = time.Second * 3
+const DB_TIMEOUT = time.Second * 5
 
 func Insert(db *sql.DB, user *pb.User) (*pb.User, error) {
 	newUser := &pb.User{}
@@ -21,11 +21,14 @@ func Insert(db *sql.DB, user *pb.User) (*pb.User, error) {
 		return nil, err
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), DB_TIMEOUT)
 	defer cancel()
 
-	stmt := `INSERT INTO users (email, password, role, created_at, updated_at)
-    VALUES ($1, $2, $3, $4, $5) RETURNING id, email, password, role, created_at, updated_at`
+	stmt := `
+  INSERT INTO users 
+  (email, password, role, created_at, updated_at)
+  VALUES ($1, $2, $3, $4, $5) 
+  RETURNING id, email, password, role, created_at, updated_at`
 
 	createdAt := time.Now().Format(time.RFC3339Nano)
 	updatedAt := time.Now().Format(time.RFC3339Nano)
@@ -48,5 +51,3 @@ func Insert(db *sql.DB, user *pb.User) (*pb.User, error) {
 
 	return newUser, err
 }
-
-

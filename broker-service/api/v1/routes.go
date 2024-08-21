@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	profileservice "github.com/flavioesteves/wizer-app/broker/internal/grpc-services/v1/profile-service"
+	userservice "github.com/flavioesteves/wizer-app/broker/internal/grpc-services/v1/user-service"
 )
 
 func Routes() http.Handler {
@@ -28,6 +29,10 @@ func Routes() http.Handler {
 	// Profile Service
 	profileRoutingGroup := router.Group("/v1/profiles")
 	profileservice.RegisterProfileRoutes(profileRoutingGroup)
+
+	// User Service
+	userRoutingGroup := router.Group("v1/users")
+	userservice.RegisterUserRoutes(userRoutingGroup)
 
 	return router
 }

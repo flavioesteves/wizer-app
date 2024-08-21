@@ -7,7 +7,7 @@ option  go_package = "github.com/flavioesteves/wizer-app/broker/proto";
 import "google/protobuf/empty.proto";
 
 message Profile {
-  string profile_id = 1;
+  string id = 1;
   string user_id = 2;
   string gender = 3;
   int32 birth_year = 4;
@@ -15,6 +15,9 @@ message Profile {
   int32 weight_kg = 6;
   string body_fat_percentage = 7;
   string goal = 8;
+
+  string created_at = 9;
+  string updated_at = 10;
 }
 
 message CreateProfileRequest {
@@ -22,7 +25,7 @@ message CreateProfileRequest {
 }
 
 message GetProfileRequest {
-  string profile_id = 1;
+  string id = 1;
 }
 
 message UpdateProfileRequest {
@@ -30,7 +33,7 @@ message UpdateProfileRequest {
 }
 
 message DeleteProfileRequest {
-  string profile_id = 1;
+  string id = 1;
 }
 
 message GetAllProfilesRequest {

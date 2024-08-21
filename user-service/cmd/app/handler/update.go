@@ -13,6 +13,7 @@ func (s *ServerConfig) UpdateUser(ctx context.Context, in *pb.UpdateUserRequest)
 	fmt.Printf("UpdatedUser was invoked with %v\n", in)
 
 	updateUser := &pb.User{
+		Id:       in.User.Id,
 		Email:    in.User.Email,
 		Password: in.User.Password,
 		Role:     in.User.Role,

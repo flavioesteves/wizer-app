@@ -11,6 +11,8 @@ import (
 // rpc GetAllUsers (GetAllUsersRequest) returns (GetAllUsersResponse);
 func (s *ServerConfig) GetAllUsers(ctx context.Context, in *pb.GetAllUsersRequest) (*pb.GetAllUsersResponse, error) {
 
+	fmt.Printf("Get all users retrieved: %v\n", in)
+
 	users, err := db.GetAll(s.db)
 
 	if err != nil {
