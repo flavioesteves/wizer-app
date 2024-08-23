@@ -19,3 +19,13 @@ type RequestUser struct {
 	CreatedAt string `json:"created_at"`
 	UpdatedAt string `json:"updated_at"`
 }
+
+type RequestRoutine struct {
+	Id         string `json:"id"`
+	Profile_Id string `json:"profile_Id"`
+	Exercises  string `json:"exercises"`
+	CreatedAt  string `json:"created_at"`
+	UpdatedAt  string `json:"updated_at"`
+	CreatedBy  string `json:"created_by"`
+	UpdatedBy  string `json:"updated_by"`
+}
