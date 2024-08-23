@@ -4,6 +4,7 @@ AUTH_BINARY= authApp
 LISTENER_BINARY = listenerApp
 PROFILE_BINARY = profileApp
 MIGRATION_BINARY = migrationApp
+ROUTINE_BINARY = routineApp
 
 ## up: starts all containers in the background without forcing build
 up:
@@ -12,7 +13,7 @@ up:
 	@echo "Docker images started!"
 
 ## up_build: stops docker-compose (if running), builds all projects and starts docker compose
-up_build: build_broker build_user build_auth build_profile build_migration build_front
+up_build: build_broker build_user build_auth build_profile build_routine build_migration build_front
 	@echo "Stopping docker images (if running...)"
 	docker compose down
 	@echo "Building (when required) and starting docker images..."
@@ -33,7 +34,7 @@ build_broker:
 
 ## build_auth: builds the auth binary as a linux executable
 build_auth:
-	@echo "Building auth binary..."
+	@echo "Building Auth service binary..."
 	cd ../authentication-service && env GOOS=linux CGO_ENABLED=0 go build -o bin/${AUTH_BINARY} ./cmd/app
 	@echo "Build Auth done!"
 
@@ -43,9 +44,14 @@ build_user:
 	@echo "Build User done!"
 
 build_profile:
-	@echo "Building User Profile binary..."
+	@echo "Building Profile Service binary..."
 	cd ../profile-service && env GOOS=linux CGO_ENABLED=0 go build -o bin/${PROFILE_BINARY} ./cmd/app
 	@echo "Build Profile done!"
+
+build_routine:
+		@echo "Building Routine Service binary..."
+		cd ../routine-service && env GOOS=linux CGO_ENABLED=0 go build -o bin/${ROUTINE_BINARY} ./cmd/app
+		@echo "Build Routine done!"
 
 build_migration:
 	@echo "Buildingn Migration Service Binary"
@@ -82,7 +88,7 @@ SHELL := bash
 	RM_F_CMD = rm -f
 	RM_RF_CMD = ${RM_F_CMD} -r
 
-project := broker-service user-service auth-service profile-service
+project := broker-service user-service auth-service profile-service routine-service
 
 proto-all: $(project) ## generate Pbs
 
@@ -90,6 +96,7 @@ proto broker-service: $@ ## Generate Pbs
 proto user-service: $@ ## Generate Pbs 
 proto auth-service: $@ ## Generate Pbs
 proto profile-service: $@ ## Generate Pbs
+proto routine-service: $@ ## Generate Pbs
 
 $(project):
 	@${CHECK_DIR_CMD}

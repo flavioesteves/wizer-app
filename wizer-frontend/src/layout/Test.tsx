@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-
+import Test from "@/pages/Test"
 
 function TestLayout() {
   return (
@@ -8,6 +8,7 @@ function TestLayout() {
       <main>
         <Outlet />
       </main>
+      <Test />
     </>
   )
 }

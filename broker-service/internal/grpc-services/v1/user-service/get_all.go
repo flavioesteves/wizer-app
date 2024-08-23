@@ -16,6 +16,16 @@ func GetAllUsers(c *gin.Context, sc pb.UserServiceClient) {
 	defer cancel()
 
 	res, err := sc.GetAllUsers(ctx, &pb.GetAllUsersRequest{})
+
+	for i, user := range res.Users {
+		userRole, err := mapRoleToProtoBuf(user.Role.String())
+		if err != nil {
+			continue
+		}
+		fmt.Println(userRole)
+		res.Users[i].Role = userRole
+	}
+
 	if err != nil {
 		fmt.Printf("Unexpected error %v\n", err)
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch users"})

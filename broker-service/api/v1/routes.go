@@ -15,7 +15,8 @@ func Routes() http.Handler {
 	router := gin.Default()
 
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"https://*", "http://*"},
+		//AllowOrigins:     []string{"https://*", "http://*"},
+		AllowOrigins:     []string{"http://localhost:5173"}, //TODO: replace for production domain
 		AllowMethods:     []string{"GET", "PUT", "DELETE", "POST", "OPTIONS"},
 		AllowHeaders:     []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
 		ExposeHeaders:    []string{"Link"},
