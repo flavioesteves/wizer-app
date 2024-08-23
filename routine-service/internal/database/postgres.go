@@ -19,7 +19,7 @@ func ConnectToDB() (*sql.DB, error) {
 	for i := 0; i < 10; i++ {
 		connection, err := sql.Open("pgx", dsn)
 		if err != nil {
-			log.Printf("Postgres not yet ready (%d attempt): %v\n", i+1, err)
+			log.Printf("Postgres not yed ready (%d attempt): %v\n", i+1, err)
 			time.Sleep(2 * time.Second)
 			continue
 		}

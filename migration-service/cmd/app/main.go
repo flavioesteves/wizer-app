@@ -4,23 +4,17 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
-
-	_ "github.com/jackc/pgconn"
-	_ "github.com/jackc/pgx/v5"
-	_ "github.com/jackc/pgx/v5/stdlib"
 )
 
 func main() {
-	db, err := ConnectDB()
+	db, err := connectDB()
 	if err != nil {
 		log.Fatal(err)
 	}
-	//db.Close()
 
 	err = Migrate(db, "/app/migrations")
 	if err != nil {
@@ -60,20 +54,4 @@ func Migrate(db *sql.DB, migrationDir string) error {
 
 	log.Println("End Migration")
 	return nil
-}
-
-func ConnectDB() (*sql.DB, error) {
-	dsn := os.Getenv("DSN")
-
-	db, err := sql.Open("pgx", dsn)
-	if err != nil {
-		return nil, err
-	}
-
-	err = db.Ping()
-	if err != nil {
-		return nil, err
-	}
-
-	return db, nil
 }

@@ -15,7 +15,7 @@ func Update(db *sql.DB, profile *pb.Profile) (*pb.Profile, error) {
 	query := `
     UPDATE profilers
     SET user_id = $1, gender =$2, birth_year=$3, height_cm=$4, weight_kg=$5, body_fat_percentage=$6, goal =$7, updated_at=$8
-    WHERE id =$
+    WHERE id =$9
     RETURNING id, user_id, gender, birth_year, height_cm, weight_kg, body_fat_percentage, goal, create_at, updated_at
   `
 

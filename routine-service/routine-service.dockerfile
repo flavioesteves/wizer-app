@@ -2,6 +2,6 @@ FROM alpine:latest
 
 RUN mkdir /app
 
-COPY bin/userApp /app
+COPY bin/routineApp /app
 
 CMD ["app/routineApp"]
