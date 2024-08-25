@@ -24,7 +24,7 @@ func Insert(db *sql.DB, routine *pb.Routine) (*pb.Routine, error) {
   INSERT INTO routines
   (profile_id ,exercises, created_by, updated_by, created_at, updated_at)
   VALUES ($1, $2, $3, $4, $5, $6)
-  RETURNING id, profile_id, exercises, created_by, updated_by, created_at, updated_at)`
+  RETURNING id, profile_id, exercises, created_by, updated_by, created_at, updated_at`
 
 	createdAt := time.Now().Format(time.RFC3339Nano)
 	updatedAt := time.Now().Format(time.RFC3339Nano)

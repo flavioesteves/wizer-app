@@ -22,8 +22,8 @@ func CreateRoutine(c *gin.Context, sc pb.RoutineServiceClient) {
 	}
 
 	newRoutine := &pb.Routine{
-		Id:        requestRoutine.Id,
-		Exercises: requestRoutine.Exercises, //TODO: update to be an array
+		ProfileId: requestRoutine.ProfileId,
+		Exercises: make([]*pb.Exercise, 0, len(requestRoutine.Exercises)), // Pre-allocate slice to populate the fiels with the logic
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)

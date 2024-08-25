@@ -21,11 +21,21 @@ type RequestUser struct {
 }
 
 type RequestRoutine struct {
-	Id         string `json:"id"`
-	Profile_Id string `json:"profile_Id"`
-	Exercises  string `json:"exercises"`
-	CreatedAt  string `json:"created_at"`
-	UpdatedAt  string `json:"updated_at"`
-	CreatedBy  string `json:"created_by"`
-	UpdatedBy  string `json:"updated_by"`
+	Id        string            `json:"id"`
+	ProfileId string            `json:"profile_id"`
+	Exercises []RequestExercise `json:"exercises"`
+	CreatedAt string            `json:"created_at"`
+	UpdatedAt string            `json:"updated_at"`
+	CreatedBy string            `json:"created_by"`
+	UpdatedBy string            `json:"updated_by"`
+}
+
+type RequestExercise struct {
+	Id          string `json:"id"`
+	Name        string `json:"name"`
+	MuscleGroup string `json:"muscle_group"`
+	CreatedAt   string `json:"created_at"`
+	UpdatedAt   string `json:"updated_at"`
+	CreatedBy   string `json:"created_by"`
+	UpdatedBy   string `json:"updated_by"`
 }

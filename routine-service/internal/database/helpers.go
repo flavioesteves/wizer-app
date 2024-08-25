@@ -1,20 +1,9 @@
-package handler
+package database
 
 import (
-	"database/sql"
-	"strings"
-
 	pb "github.com/flavioesteves/wizer-app/routine/proto"
+	"strings"
 )
-
-type ServerConfig struct {
-	db *sql.DB
-	pb.RoutineServiceServer
-}
-
-func NewServerConfig(db *sql.DB) *ServerConfig {
-	return &ServerConfig{db: db}
-}
 
 func SliceToString(exercises []*pb.Exercise) string {
 	var sb strings.Builder

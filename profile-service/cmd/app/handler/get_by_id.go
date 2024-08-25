@@ -11,7 +11,7 @@ import (
 func (s *ServerConfig) GetProfile(ctx context.Context, in *pb.GetProfileRequest) (*pb.ProfileResponse, error) {
 	fmt.Printf("GetProfile was invoked with %v\n", in)
 
-	profileId := in.ProfileId
+	profileId := in.Id
 
 	profile, err := db.Get(s.db, profileId)
 	if err != nil {

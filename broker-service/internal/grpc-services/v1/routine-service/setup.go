@@ -18,5 +18,4 @@ func Connect() pb.RoutineServiceClient {
 	}
 
 	return pb.NewRoutineServiceClient(conn)
-
 }
