@@ -4,7 +4,7 @@
 
 
 # REST TOOL
-* TERMINAL: curl --header "Content-Type: application/json" \
+* TERMINAL: curl --header "Content-Type: application/json" 
     -- request POST \
     -- data '{"key":"value}' \
     "BROKER_SERVICE_ENDPOINT" 

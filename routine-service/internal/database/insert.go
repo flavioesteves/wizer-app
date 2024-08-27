@@ -24,24 +24,31 @@ func Insert(db *sql.DB, routine *pb.Routine) (*pb.Routine, error) {
   INSERT INTO routines
   (profile_id ,exercises, created_by, updated_by, created_at, updated_at)
   VALUES ($1, $2, $3, $4, $5, $6)
-  RETURNING id, profile_id, exercises, created_by, updated_by, created_at, updated_at`
+  RETURNING id, profile_id,exercises ,created_by, updated_by, created_at, updated_at`
 
 	createdAt := time.Now().Format(time.RFC3339Nano)
 	updatedAt := time.Now().Format(time.RFC3339Nano)
 
+	exercisesEncoded, err := encodeExercise(routine.Exercises)
+	if err != nil {
+		return nil, fmt.Errorf("failed to convert to bytes the exercises: %v\n", &routine.Exercises)
+	}
+
 	row := db.QueryRowContext(ctx, stmt,
 		&routine.ProfileId,
-		&routine.Exercises,
+		exercisesEncoded,
 		&routine.CreatedBy,
 		&routine.UpdatedBy,
 		createdAt,
 		updatedAt,
 	)
 
-	err := row.Scan(
+	var exercisesBytes []byte
+
+	err = row.Scan(
 		&newRoutine.Id,
 		&newRoutine.ProfileId,
-		&newRoutine.Exercises,
+		&exercisesBytes,
 		&newRoutine.CreatedBy,
 		&newRoutine.UpdatedBy,
 		&newRoutine.CreatedAt,
@@ -53,6 +60,12 @@ func Insert(db *sql.DB, routine *pb.Routine) (*pb.Routine, error) {
 	}
 
 	fmt.Printf("New Routine was created: %v\n", newRoutine)
+
+	exercises, err := decodeExercise(exercisesBytes)
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode exercises: %w", err)
+	}
+	newRoutine.Exercises = exercises
 
 	return newRoutine, err
 }
