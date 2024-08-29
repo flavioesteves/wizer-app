@@ -7,6 +7,7 @@ import (
 	"time"
 
 	pb "github.com/flavioesteves/wizer-app/routine/proto"
+	"github.com/lib/pq"
 )
 
 func Get(db *sql.DB, id string) (*pb.Routine, error) {
@@ -23,7 +24,7 @@ func Get(db *sql.DB, id string) (*pb.Routine, error) {
 	err := db.QueryRowContext(ctx, query, id).Scan(
 		&routine.Id,
 		&routine.ProfileId,
-		&routine.Exercises,
+		pq.Array(&routine.Exercises),
 		&routine.CreatedBy,
 		&routine.UpdatedBy,
 		&routine.CreatedAt,

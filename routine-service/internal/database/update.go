@@ -4,9 +4,11 @@ import (
 	"context"
 	"database/sql"
 	"errors"
+	"fmt"
 	"time"
 
 	pb "github.com/flavioesteves/wizer-app/routine/proto"
+	"github.com/lib/pq"
 )
 
 func Update(db *sql.DB, routine *pb.Routine) (*pb.Routine, error) {
@@ -14,20 +16,16 @@ func Update(db *sql.DB, routine *pb.Routine) (*pb.Routine, error) {
 
 	query := `
     UPDATE routines
-    SET profile_id =$1, exercises=$2, updated_by=$3, created_by=$4, updated_at=$5, created_at=$6
-    WHERE id = $7
+    SET profile_id=$1, exercises=$2, updated_by=$3, updated_at=now()
+    WHERE id=$4
     RETURNING id, profile_id, exercises, updated_by, created_by, updated_at, created_at
   `
-
-	updateAt := time.Now().Format(time.RFC3339Nano)
 
 	args := []any{
 		routine.ProfileId,
 		routine.Exercises,
 		routine.UpdatedBy,
-		routine.CreatedBy,
-		updateAt,
-		routine.CreatedAt,
+		routine.Id,
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
@@ -37,7 +35,7 @@ func Update(db *sql.DB, routine *pb.Routine) (*pb.Routine, error) {
 	err := row.Scan(
 		&updatedRoutine.Id,
 		&updatedRoutine.ProfileId,
-		&updatedRoutine.Exercises,
+		pq.Array(&updatedRoutine.Exercises),
 		&updatedRoutine.UpdatedBy,
 		&updatedRoutine.CreatedBy,
 		&updatedRoutine.UpdatedAt,
@@ -45,6 +43,8 @@ func Update(db *sql.DB, routine *pb.Routine) (*pb.Routine, error) {
 	)
 
 	if err != nil {
+		fmt.Printf("Error: %v\n", err)
+
 		switch {
 		case errors.Is(err, sql.ErrNoRows):
 			return nil, errors.New("Edit conflict")

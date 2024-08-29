@@ -5,6 +5,7 @@ LISTENER_BINARY = listenerApp
 PROFILE_BINARY = profileApp
 MIGRATION_BINARY = migrationApp
 ROUTINE_BINARY = routineApp
+EXERCISE_BINARY = exerciseApp
 
 ## up: starts all containers in the background without forcing build
 up:
@@ -13,7 +14,7 @@ up:
 	@echo "Docker images started!"
 
 ## up_build: stops docker-compose (if running), builds all projects and starts docker compose
-up_build: build_broker build_user build_auth build_profile build_routine build_migration build_front
+up_build: build_broker build_user build_auth build_profile build_routine build_exercise build_migration build_front
 	@echo "Stopping docker images (if running...)"
 	docker compose down
 	@echo "Building (when required) and starting docker images..."
@@ -53,6 +54,11 @@ build_routine:
 		cd ../routine-service && env GOOS=linux CGO_ENABLED=0 go build -o bin/${ROUTINE_BINARY} ./cmd/app
 		@echo "Build Routine done!"
 
+build_exercise:
+		@echo "Building Exercise Service binary..."
+		cd ../exercise-service && env GOOS=linux CGO_ENABLED=0 go build -o bin/${EXERCISE_BINARY} ./cmd/app
+		@echo "Build Exercise done!" 
+
 build_migration:
 	@echo "Buildingn Migration Service Binary"
 	cd ../migration-service && env GOOS=linux CGO_ENABLED=0 go build -o bin/${MIGRATION_BINARY} ./cmd/app
@@ -88,7 +94,7 @@ SHELL := bash
 	RM_F_CMD = rm -f
 	RM_RF_CMD = ${RM_F_CMD} -r
 
-project := broker-service user-service auth-service profile-service routine-service
+project := broker-service user-service auth-service profile-service routine-service exercise-service
 
 proto-all: $(project) ## generate Pbs
 
@@ -97,6 +103,7 @@ proto user-service: $@ ## Generate Pbs
 proto auth-service: $@ ## Generate Pbs
 proto profile-service: $@ ## Generate Pbs
 proto routine-service: $@ ## Generate Pbs
+proto exercise-service: $@ ## Generate Pbs
 
 $(project):
 	@${CHECK_DIR_CMD}

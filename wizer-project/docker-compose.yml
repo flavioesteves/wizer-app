@@ -74,6 +74,18 @@ services:
     environment:
       DSN: "host=postgres port=5432 user=postgres password=password dbname=wizer_app sslmode=disable timezone=UTC connect_timeout=5"
 
+  exercise-service:
+    build:
+      context: ./../exercise-service
+      dockerfile: ./../exercise-service/exercise-service.dockerfile
+    restart: always
+    ports:
+      - "50054:50054"
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      DSN: "host=postgres port=5432 user=postgres password=password dbname=wizer_app sslmode=disable timezone=UTC connect_timeout=5"
 
   postgres:
     image: 'postgres:16-alpine'

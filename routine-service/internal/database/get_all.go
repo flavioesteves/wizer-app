@@ -7,13 +7,15 @@ import (
 	"time"
 
 	pb "github.com/flavioesteves/wizer-app/routine/proto"
+	"github.com/lib/pq"
 )
 
 func GetAll(db *sql.DB) ([]*pb.Routine, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	query := ``
+	query := `SELECT id, profile_id, exercises, created_by, created_at, updated_by, updated_at
+    FROM ROUTINES ORDER by created_at`
 
 	rows, err := db.QueryContext(ctx, query)
 	if err != nil {
@@ -29,7 +31,7 @@ func GetAll(db *sql.DB) ([]*pb.Routine, error) {
 		err := rows.Scan(
 			&routine.Id,
 			&routine.ProfileId,
-			&routine.Exercises,
+			pq.Array(&routine.Exercises),
 			&routine.CreatedAt,
 			&routine.UpdatedAt,
 			&routine.CreatedBy,

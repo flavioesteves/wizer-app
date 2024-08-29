@@ -4,10 +4,9 @@ import (
 	"bytes"
 	"encoding/gob"
 	"fmt"
-	pb "github.com/flavioesteves/wizer-app/routine/proto"
 )
 
-func encodeExercise(exercise []*pb.Exercise) ([]byte, error) {
+func encodeExercise(exercise []string) ([]byte, error) {
 	var buf bytes.Buffer
 
 	enc := gob.NewEncoder(&buf)
@@ -18,8 +17,8 @@ func encodeExercise(exercise []*pb.Exercise) ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-func decodeExercise(data []byte) ([]*pb.Exercise, error) {
-	var exercises []*pb.Exercise
+func decodeExercise(data []byte) ([]string, error) {
+	var exercises []string
 	dec := gob.NewDecoder(bytes.NewReader(data))
 	err := dec.Decode(&exercises)
 	if err != nil {
