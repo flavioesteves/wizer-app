@@ -12,7 +12,7 @@ import (
 
 func Get(db *sql.DB, id string) (*pb.Routine, error) {
 	query := `
-    SELECT id, profile_id, exercises, created_by, updated_by, created_at, updated_at
+    SELECT *
     FROM routines
     WHERE id = $1`
 

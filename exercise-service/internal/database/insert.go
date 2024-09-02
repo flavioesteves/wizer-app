@@ -23,7 +23,7 @@ func Insert(db *sql.DB, exercise *pb.Exercise) (*pb.Exercise, error) {
   INSERT INTO exercises
   (name, muscle_group, description, steps, video_url, video_duration_seconds, created_by, updated_by, created_at, updated_at)
   VALUES($1, $2, $3, $4, $5, $6, $7, $8, now(), now())
-  RETURNING id, name, muscle_group, description, steps, video_url, video_duration_seconds, created_by, updated_by, created_at, updated_at`
+  RETURNING *`
 
 	stepsJSON, err := json.Marshal(exercise.Steps)
 	if err != nil {

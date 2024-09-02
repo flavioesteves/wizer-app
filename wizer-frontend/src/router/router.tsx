@@ -1,16 +1,18 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 
 import MainLayout from "@/layout/Main";
-//import Exercises from "@/pages/Exercises";
 import TestLayout from "@/layout/Test";
+import SignIn from "@/pages/SignIn";
+import PrivateRoute from "@/router/PrivateRoute";
+
 
 const mainRoutes: Array<RouteObject> = [
-  // { path: "exercises", element: <Exercises /> }
-  { path: "test", element: <TestLayout /> }
+  { path: "test", element: <PrivateRoute><TestLayout /></PrivateRoute> },
 ]
 
 const router = createBrowserRouter([
-  { path: "/", element: <MainLayout />, children: mainRoutes },
+  { path: "/", element: <PrivateRoute><MainLayout /></PrivateRoute>, children: mainRoutes },
+  { path: "signin", element: <SignIn /> }
 ])
 
 

@@ -15,7 +15,7 @@ func GetAll(db *sql.DB) ([]*pb.Routine, error) {
 	defer cancel()
 
 	query := `SELECT id, profile_id, exercises, created_by, created_at, updated_by, updated_at
-    FROM ROUTINES ORDER by created_at`
+    FROM routines ORDER by created_at`
 
 	rows, err := db.QueryContext(ctx, query)
 	if err != nil {
