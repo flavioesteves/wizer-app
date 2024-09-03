@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Button from "@/components/ui/button";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -20,7 +20,7 @@ const SignIn = () => {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex flex-col justify-center items-center h-screen">
       <form onSubmit={handleSubmit} className="w-full max-w-sm">
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
@@ -62,9 +62,7 @@ const SignIn = () => {
           />
           <p className="text-red-500">{passwordError}</p>
         </div>
-        <button type="submit" className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700">
-          Sign Up
-        </button>
+        <Button type="submit">Sign Up</Button>
         <p className="text-center mt-2">
           Already have an account? <a href="/login" className="text-blue-500">Login</a>
         </p>
