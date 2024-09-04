@@ -29,10 +29,14 @@ services:
       dockerfile: ./../authentication-service/authentication-service.dockerfile
     restart: always
     ports:
-      - "8081:8081" 
+      - "50055:50055" 
     deploy:
       mode: replicated
       replicas: 1
+    environment:
+      REDIS_PASSWORD: redis_password
+      REDIS_DB: 0
+      REDIS_ADDRESS: redis:6379
 
   user-service:
     build:
@@ -109,6 +113,7 @@ services:
     ports:
       - "6379:6379" 
     command: redis-server --save 60 1 --loglevel warning
+ 
     volumes:
       - ./data:/data
 

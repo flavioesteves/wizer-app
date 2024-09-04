@@ -94,13 +94,13 @@ SHELL := bash
 	RM_F_CMD = rm -f
 	RM_RF_CMD = ${RM_F_CMD} -r
 
-project := broker-service user-service auth-service profile-service routine-service exercise-service
+project := broker-service user-service authentication-service profile-service routine-service exercise-service
 
 proto-all: $(project) ## generate Pbs
 
 proto broker-service: $@ ## Generate Pbs
 proto user-service: $@ ## Generate Pbs 
-proto auth-service: $@ ## Generate Pbs
+proto authentication-service: $@ ## Generate Pbs
 proto profile-service: $@ ## Generate Pbs
 proto routine-service: $@ ## Generate Pbs
 proto exercise-service: $@ ## Generate Pbs
