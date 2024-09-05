@@ -18,15 +18,15 @@ func main() {
 	fmt.Println("Authentication Service Started")
 
 	// connect to Redis
-	redis, err := middleware.RedisConn()
+	redisClient, err := middleware.RedisConn()
 	if err != nil {
 		fmt.Printf("Error to connect to redis %v\n", err)
 	}
 
-	fmt.Println(redis)
+	fmt.Println(redisClient)
 
 	// Init Server
-	serverConfig := handler.NewServerConfig()
+	serverConfig := handler.NewServerConfig(redisClient)
 	listen, err := net.Listen("tcp", AUTH_SERVICE_HOST)
 	fmt.Printf("Listen: %v\n", listen.Addr().String())
 

@@ -1,14 +1,28 @@
 import React, { useState } from "react";
 import Button from "@/components/ui/button";
+import api from "@/services/api";
+import User from "@/models/User";
+
 
 const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   //const [passwordError, setPasswordError] = useState("");
+  const [response, setResponse] = useState("")
 
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+
+    const user: User = {
+      email: email,
+      password: password
+    }
+    let res = api.loginUser(user)
+    if (res !== null) {
+      setResponse(res.toString())
+    }
+    alert(response)
 
   }
 

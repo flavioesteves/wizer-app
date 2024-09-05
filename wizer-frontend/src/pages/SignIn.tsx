@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Button from "@/components/ui/button";
+import api from "@/services/api";
+import User from "@/models/User";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -17,6 +19,13 @@ const SignIn = () => {
       return;
     }
     setPasswordError("")
+
+    const user: User = {
+      email: email,
+      password: password
+    }
+
+    api.registerUser(user)
   }
 
   return (

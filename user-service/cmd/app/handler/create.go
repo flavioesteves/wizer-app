@@ -22,8 +22,6 @@ func (s *ServerConfig) CreateUser(ctx context.Context, in *pb.CreateUserRequest)
 		fmt.Printf("Failed to create the user: %v\n", err)
 	}
 
-	return &pb.UserResponse{
-		User: user,
-	}, nil
+	return &pb.UserResponse{User: user}, nil
 
 }

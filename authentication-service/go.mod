@@ -3,7 +3,10 @@ module github.com/flavioesteves/wizer-app/authentication
 go 1.22.3
 
 require (
+	github.com/golang-jwt/jwt v3.2.2+incompatible
+	github.com/golang/protobuf v1.5.0
 	github.com/redis/go-redis/v9 v9.6.1
+	github.com/rs/xid v1.6.0
 	google.golang.org/grpc v1.66.0
 	google.golang.org/protobuf v1.34.2
 )

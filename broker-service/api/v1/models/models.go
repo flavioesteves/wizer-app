@@ -39,3 +39,12 @@ type RequestExercise struct {
 	CreatedBy   string `json:"created_by"`
 	UpdatedBy   string `json:"updated_by"`
 }
+
+type RequestAuthLogin struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
+type RequestAuthToken struct {
+	Token string `json:"token"`
+}
