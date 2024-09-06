@@ -11,7 +11,7 @@ import (
 func (s *ServerConfig) GetUser(ctx context.Context, in *pb.GetUserRequest) (*pb.UserResponse, error) {
 	fmt.Printf("Get User was invoked with %v\n", in)
 
-	userId := in.UserId
+	userId := in.GetUserId()
 
 	user, err := db.Get(s.db, userId)
 	if err != nil {

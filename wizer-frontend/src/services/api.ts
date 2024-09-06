@@ -7,7 +7,7 @@ interface GetAllResponse {
 
 
 //const API_URL = import.meta.env.VITE_SERVER_DEV_URI;
-const API_URL = "http://0.0.0.0:8080/v1"
+const API_URL = "http://localhost:8080/v1"
 
 // ####### USERS ######
 const API_URL_USERS = API_URL + "/users" //TODO: Create a file with constants
@@ -38,7 +38,6 @@ async function registerUser(user: User) {
 
 
 // ####### AUTH #######
-
 const API_LOGIN_AUTH = API_URL + "/auth"
 
 async function loginUser(user: User) {
@@ -55,7 +54,6 @@ async function loginUser(user: User) {
     return null
   }
 }
-
 
 
 export default {

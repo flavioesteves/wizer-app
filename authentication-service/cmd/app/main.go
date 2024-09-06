@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
 	"github.com/flavioesteves/wizer-app/authentication/cmd/app/handler"
+	"github.com/flavioesteves/wizer-app/authentication/internal/database"
 	"github.com/flavioesteves/wizer-app/authentication/internal/middleware"
 	pb "github.com/flavioesteves/wizer-app/authentication/proto"
 )
@@ -22,11 +24,17 @@ func main() {
 	if err != nil {
 		fmt.Printf("Error to connect to redis %v\n", err)
 	}
-
 	fmt.Println(redisClient)
 
+	// connect to Database
+	dbConn, err := database.ConnectToDB()
+
+	if err != nil {
+		log.Panic("Can't connect to PostGres!")
+	}
+
 	// Init Server
-	serverConfig := handler.NewServerConfig(redisClient)
+	serverConfig := handler.NewServerConfig(redisClient, dbConn)
 	listen, err := net.Listen("tcp", AUTH_SERVICE_HOST)
 	fmt.Printf("Listen: %v\n", listen.Addr().String())
 

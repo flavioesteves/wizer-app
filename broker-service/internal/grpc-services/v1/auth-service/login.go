@@ -22,14 +22,17 @@ func LoginUser(c *gin.Context, sc pb.AuthenticationServiceClient) {
 		return
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancel()
 
 	res, err := sc.Login(ctx, &pb.LoginRequest{Email: reqLogin.Email, Password: reqLogin.Password})
 	if err != nil {
 		fmt.Printf("Login Unexpected error %v\n", err)
-	}
-	fmt.Printf("Login: %v\n", res)
+		c.JSON(http.StatusOK, gin.H{"isValid": false, "token": ""})
+	} else {
 
-	c.JSON(http.StatusOK, res)
+		fmt.Printf("Login: %v\n", res)
+
+		c.JSON(http.StatusOK, res)
+	}
 }

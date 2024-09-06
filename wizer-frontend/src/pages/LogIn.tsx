@@ -21,8 +21,9 @@ const LogIn = () => {
     let res = api.loginUser(user)
     if (res !== null) {
       setResponse(res.toString())
+      console.log(response)
     }
-    alert(response)
+
 
   }
 
