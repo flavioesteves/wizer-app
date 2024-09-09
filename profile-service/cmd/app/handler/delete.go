@@ -13,7 +13,7 @@ import (
 func (s *ServerConfig) DeleteProfile(ctx context.Context, in *pb.DeleteProfileRequest) (*emptypb.Empty, error) {
 	fmt.Printf("Delete profile was invoked with %v\n", in)
 
-	profileId := in.Id
+	profileId := in.GetId()
 
 	err := db.Delete(s.db, profileId)
 	if err != nil {

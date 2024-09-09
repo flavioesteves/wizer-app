@@ -13,7 +13,7 @@ import (
 func (s *ServerConfig) DeleteUser(ctx context.Context, in *pb.DeleteUserRequest) (*emptypb.Empty, error) {
 	fmt.Printf("Delete user was invoked with %v\n", in)
 
-	userId := in.UserId
+	userId := in.GetUserId()
 
 	err := db.Delete(s.db, userId)
 	if err != nil {

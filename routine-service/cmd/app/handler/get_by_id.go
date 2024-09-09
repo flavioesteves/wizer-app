@@ -11,7 +11,7 @@ import (
 func (s *ServerConfig) GetRoutine(ctx context.Context, in *pb.GetRoutineRequest) (*pb.RoutineResponse, error) {
 	fmt.Printf("Get Routine was invoked with %v\n", in)
 
-	routineId := in.Id
+	routineId := in.GetId()
 
 	routine, err := db.Get(s.db, routineId)
 	if err != nil {

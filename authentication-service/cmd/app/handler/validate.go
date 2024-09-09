@@ -13,7 +13,8 @@ import (
 func (s *ServerConfig) ValidateToken(ctx context.Context, in *pb.ValidateTokenRequest) (*pb.ValidateTokenResponse, error) {
 	token := in.GetToken()
 
-	val, err := s.redisClient.Get(ctx, token).Result()
+	sessionData, err := s.GetSessionData(ctx, token)
+
 	if err != nil {
 		if err == redis.Nil {
 			return &pb.ValidateTokenResponse{IsValid: false, Message: "Invalid Tokes"}, nil
@@ -21,7 +22,7 @@ func (s *ServerConfig) ValidateToken(ctx context.Context, in *pb.ValidateTokenRe
 		return nil, err
 	}
 
-	userID, err := strconv.Atoi(strings.TrimPrefix(val, "user_id:"))
+	userID, err := strconv.Atoi(strings.TrimPrefix(sessionData, "user_session:"))
 	if err != nil {
 		return nil, err
 	}

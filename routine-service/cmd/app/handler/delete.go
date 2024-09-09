@@ -12,7 +12,7 @@ import (
 func (s *ServerConfig) DeleteRoutine(ctx context.Context, in *pb.DeleteRoutineRequest) (*emptypb.Empty, error) {
 	fmt.Printf("Delete routine was invoked with %v\n", in)
 
-	routineId := in.Id
+	routineId := in.GetId()
 
 	err := db.Delete(s.db, routineId)
 	if err != nil {

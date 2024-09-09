@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"github.com/flavioesteves/wizer-app/authentication/internal/database"
-	"github.com/flavioesteves/wizer-app/authentication/internal/middleware"
 	pb "github.com/flavioesteves/wizer-app/authentication/proto"
 )
 
@@ -29,9 +28,26 @@ func (s *ServerConfig) Login(ctx context.Context, in *pb.LoginRequest) (*pb.Logi
 		return nil, err
 	}
 
-	token := middleware.GenerateToken()
-	session := s.redisClient.Set(ctx, token, "user_session:"+in.GetEmail(), time.Hour*24)
-	fmt.Println(session)
+	//token := middleware.GenerateToken()
+	token, err := GenerateToken(in.GetEmail())
+	if err != nil {
+
+		fmt.Printf("GenerateToke: %v\n", err)
+
+		return nil, err
+	}
+
+	sessionData := "user_session:" + in.GetEmail()
+
+	err = s.redisClient.Set(ctx, token, sessionData, time.Hour*24).Err()
+	if err != nil {
+		return nil, err
+	}
+
 	s.redisClient.Save(ctx)
+
+	test, err := s.GetSessionData(ctx, token)
+	fmt.Printf("TEST: %v\n", test)
+
 	return &pb.LoginResponse{IsValid: true, Token: token}, nil
 }
