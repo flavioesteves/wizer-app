@@ -4,21 +4,32 @@ import api from "@/services/api";
 import User from "@/models/User";
 
 
-const LogIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  //const [passwordError, setPasswordError] = useState("");
-  const [response, setResponse] = useState("")
+interface FormData {
+  email: string;
+  password: string;
+}
 
+const LogIn = () => {
+  const [response, setResponse] = useState("")
+  const [form, setForm] = useState<FormData>({
+    email: "",
+    password: "",
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
+  }
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
     const user: User = {
-      email: email,
-      password: password
+      email: form.email,
+      password: form.password
     }
-    let res = api.loginUser(user)
+    let res = api.auth.login(user)
     if (res !== null) {
       setResponse(res.toString())
       console.log(response)
@@ -38,8 +49,7 @@ const LogIn = () => {
             type="email"
             id="email"
             name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
           />
         </div>
@@ -51,8 +61,7 @@ const LogIn = () => {
             type="password"
             id="password"
             name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
           />
           <Button type="submit">Log In</Button>

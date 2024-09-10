@@ -1,17 +1,16 @@
 import axios, { AxiosResponse } from "axios";
 
+import { API_URL_AUTH } from "@/lib/constants";
 import User from "@/models/User";
 
-const API_URL_AUTH = "http://localhost:8080/v1/auth"
 
-
-async function signIn(user: User) {
+async function login(user: User) {
   try {
     const userReq: User = {
       email: user.email,
       password: user.password
     }
-    const response: AxiosResponse<String> = await axios.post(API_URL_AUTH, userReq)
+    const response: AxiosResponse<string> = await axios.post(API_URL_AUTH, userReq)
     return response.data
 
   } catch (error) {
@@ -21,7 +20,7 @@ async function signIn(user: User) {
 }
 
 
-async function validateSession(token: String) {
+async function isSessionValid(token: string) {
 
   try {
 
@@ -39,8 +38,7 @@ async function validateSession(token: String) {
 }
 
 
-
 export default {
-  signIn: signIn,
-  validateSession: validateSession
+  login,
+  isSessionValid
 }

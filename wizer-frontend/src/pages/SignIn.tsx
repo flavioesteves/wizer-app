@@ -25,7 +25,7 @@ const SignIn = () => {
       password: password
     }
 
-    api.registerUser(user)
+    api.user.register(user)
   }
 
   return (

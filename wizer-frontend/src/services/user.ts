@@ -1,13 +1,12 @@
 import axios, { AxiosResponse } from "axios";
 
+import { API_URL_USERS } from "@/lib/constants";
 import User from "@/models/User";
 
 
 interface GetAllUsersResponse {
   users: User[];
 }
-
-const API_URL_USERS = "http://localhost:8080/v1/users"
 
 async function getAll() {
   try {
