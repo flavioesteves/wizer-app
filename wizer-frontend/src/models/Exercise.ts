@@ -1,4 +1,4 @@
-interface Exercise {
+type Exercise = {
   id: string;
   name: string;
   steps: string;

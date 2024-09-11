@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 
 
-interface SidebarProps {
+type SidebarProps = {
   isOpen?: boolean,
   children?: ReactNode
 }

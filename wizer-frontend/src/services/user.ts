@@ -4,7 +4,7 @@ import { API_URL_USERS } from "@/lib/constants";
 import User from "@/models/User";
 
 
-interface GetAllUsersResponse {
+type GetAllUsersResponse = {
   users: User[];
 }
 

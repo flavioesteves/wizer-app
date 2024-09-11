@@ -1,7 +1,7 @@
 import { ReactNode, HTMLAttributes } from "react";
 
 
-interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "secondary"; // Define allowed variants
   size?: "sm" | "md" | "lg"; // Define allowed sizes
   type?: "button" | "submit" | "reset";

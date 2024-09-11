@@ -23,13 +23,10 @@ async function login(user: User) {
 async function isSessionValid(token: string) {
 
   try {
-
     const isValidSessionResponse: AxiosResponse<String> = await axios.post(API_URL_AUTH + "/validate", token)
 
     console.log(isValidSessionResponse.data)
     return isValidSessionResponse.data;
-
-
 
   } catch (error) {
     console.log(error)

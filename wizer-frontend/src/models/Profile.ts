@@ -1,4 +1,4 @@
-interface Profile {
+type Profile = {
   id: string;
   user_id: string;
   gender: string;

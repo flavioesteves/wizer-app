@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-interface ListProps<T> {
+type ListProps<T> = {
   items: T[];
   renderItem: (item: T, column: string) => ReactNode;
   columns: string[]

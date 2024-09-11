@@ -4,7 +4,7 @@ import api from "@/services/api";
 import User from "@/models/User";
 
 
-interface FormData {
+type FormData = {
   email: string;
   password: string;
 }
