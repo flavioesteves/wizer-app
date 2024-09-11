@@ -1,5 +1,5 @@
 import { ReactNode, HTMLAttributes } from "react";
-
+import { cn } from "@/lib/utils";
 
 type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "secondary"; // Define allowed variants
@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({ variant = "primary", size = "md", child
   `;
 
   return (
-    <button className={buttonClasses} {...otherProps}>{children}</button>
+    <button className={cn(buttonClasses, { ...otherProps })} > {children}</button >
   );
 };
 

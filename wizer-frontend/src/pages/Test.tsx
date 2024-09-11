@@ -11,7 +11,7 @@ const Test: React.FC = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response: User[] | null = await api.getUsers();
+        const response: User[] | null = await api.user.getAll();
 
         if (response !== null) {
           setData(response);

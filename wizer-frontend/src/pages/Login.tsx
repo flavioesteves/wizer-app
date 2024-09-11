@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@/components/ui/button";
 import api from "@/services/api";
 import User from "@/models/User";
+import { useNavigate } from "react-router-dom";
 
 
 type FormData = {
@@ -9,8 +10,11 @@ type FormData = {
   password: string;
 }
 
-const LogIn = () => {
-  const [response, setResponse] = useState("")
+const Login = () => {
+  const [response, setResponse] = useState({
+    isValid: false,
+    token: ""
+  })
   const [form, setForm] = useState<FormData>({
     email: "",
     password: "",
@@ -29,20 +33,34 @@ const LogIn = () => {
       email: form.email,
       password: form.password
     }
-    let res = api.auth.login(user)
-    if (res !== null) {
-      setResponse(res.toString())
-      console.log(response)
+    let res = await api.auth.login(user)
+    if (res) {
+      setResponse((prev) => ({
+        ...prev,
+        isValid: res.isValid,
+        token: res.token
+
+      }))
     }
-
-
   }
+
+
+  const IsValidLogin = ({ response }: { response: any }) => {
+    const navigate = useNavigate();
+    useEffect(() => {
+      if (response.isValid) {
+        navigate("/");
+      }
+    }, [response.isValid]);
+    return null;
+  };
+
 
   return (
     <div className="flex justify-center items-center h-screen">
       <form onSubmit={handleSubmit} className="w-full max-w-sm">
         <div className="mb-4">
-          <label htmlFor="mb-4" className="block text-gray-700 font-bold mb-2">
+          <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
             Email
           </label>
           <input
@@ -54,7 +72,7 @@ const LogIn = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="mb-4" className="block text-gray-700 font-bold mb-2">
+          <label htmlFor="password" className="block text-gray-700 font-bold mb-2">
             Password
           </label>
           <input
@@ -64,11 +82,13 @@ const LogIn = () => {
             onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
           />
-          <Button type="submit">Log In</Button>
-          <p className="text-center mt-2">
-            Don't have an account? <a href="/signin" className="text-blue-500">Sign In</a>
-          </p>
         </div>
+        <Button variant="primary" type="submit">Log In</Button>
+        <p className="text-center mt-2">
+          Don't have an account? <a href="/signin" className="text-blue-500">Sign In</a>
+        </p>
+
+        <IsValidLogin response={response} />
       </form>
 
     </div>
@@ -76,4 +96,4 @@ const LogIn = () => {
 
 }
 
-export default LogIn;
+export default Login;

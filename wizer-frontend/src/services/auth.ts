@@ -4,13 +4,19 @@ import { API_URL_AUTH } from "@/lib/constants";
 import User from "@/models/User";
 
 
+type Auth = {
+  isValid: boolean,
+  token: string
+}
+
+
 async function login(user: User) {
   try {
     const userReq: User = {
       email: user.email,
       password: user.password
     }
-    const response: AxiosResponse<string> = await axios.post(API_URL_AUTH, userReq)
+    const response: AxiosResponse<Auth> = await axios.post(API_URL_AUTH, userReq)
     return response.data
 
   } catch (error) {
