@@ -9,11 +9,11 @@ import ProfileList from "@/pages/lists/ProfilesList";
 
 const mainRoutes: Array<RouteObject> = [
   { path: "test", element: <PrivateRoute><TestLayout /></PrivateRoute> },
-  { path: "profiles", element: <ProfileList /> }
+  { path: "profiles", element: <PrivateRoute><ProfileList /></PrivateRoute> }
 ]
 
 const router = createBrowserRouter([
-  { path: "/", element: <MainLayout />, children: mainRoutes },
+  { path: "/", element: <PrivateRoute><MainLayout /></PrivateRoute>, children: mainRoutes },
   { path: "signin", element: <SignIn /> },
   { path: "login", element: <Login /> },
 ])

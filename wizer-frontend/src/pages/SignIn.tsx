@@ -1,32 +1,80 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Button from "@/components/ui/button";
 import api from "@/services/api";
 import User from "@/models/User";
 
+type FormData = {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+
+
+
+
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [response, setResponse] = useState({
+    isRegister: false,
+  })
+
+  const [form, setForm] = useState<FormData>({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  })
+
   const [passwordError, setPasswordError] = useState("");
-  // set login
-  // set navigate
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
+  }
+
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (password !== confirmPassword) {
+
+    if (form.password !== form.confirmPassword) {
       setPasswordError("Passwords do not match.");
       return;
     }
     setPasswordError("")
 
     const user: User = {
-      email: email,
-      password: password
+      email: form.email,
+      password: form.password
     }
 
-    api.user.register(user)
+    let res = await api.user.register(user);
+    if (res) {
+      setResponse((prev: any) => ({
+        ...prev,
+        isRegister: true
+      }));
+
+      console.log(res)
+
+    }
   }
+
+  const IsValidRegister = ({ response }: { response: any }) => {
+    const navigate = useNavigate()
+    useEffect(() => {
+      if (response.isRegister) {
+        navigate("/login")
+      }
+    }, [response.isRegister]);
+    return null;
+  };
+
+
+
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">
@@ -39,8 +87,7 @@ const SignIn = () => {
             type="email"
             id="email"
             name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
           />
         </div>
@@ -52,8 +99,7 @@ const SignIn = () => {
             type="password"
             id="password"
             name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
           />
         </div>
@@ -65,8 +111,7 @@ const SignIn = () => {
             type="password"
             id="confirmPassword"
             name="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={handleChange}
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
           />
           <p className="text-red-500">{passwordError}</p>
@@ -76,6 +121,7 @@ const SignIn = () => {
           Already have an account? <a href="/login" className="text-blue-500">Login</a>
         </p>
       </form>
+      <IsValidRegister response={response} />
     </div>
   )
 

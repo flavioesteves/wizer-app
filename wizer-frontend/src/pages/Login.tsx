@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Button from "@/components/ui/button";
 import api from "@/services/api";
 import User from "@/models/User";
-import { useNavigate } from "react-router-dom";
 
 
 type FormData = {
@@ -39,7 +40,6 @@ const Login = () => {
         ...prev,
         isValid: res.isValid,
         token: res.token
-
       }))
     }
   }
@@ -87,10 +87,9 @@ const Login = () => {
         <p className="text-center mt-2">
           Don't have an account? <a href="/signin" className="text-blue-500">Sign In</a>
         </p>
-
-        <IsValidLogin response={response} />
       </form>
 
+      <IsValidLogin response={response} />
     </div>
   )
 

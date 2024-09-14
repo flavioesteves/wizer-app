@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-import { API_URL_USERS } from "@/lib/constants";
+import { API_URL_USERS, API_URL_USERS_REGISTER } from "@/lib/constants";
 import User from "@/models/User";
 
 
@@ -24,7 +24,7 @@ async function register(user: User) {
       email: user.email,
       password: user.password
     }
-    const response: AxiosResponse<User> = await axios.post(API_URL_USERS, userReq)
+    const response: AxiosResponse<User> = await axios.post(API_URL_USERS_REGISTER, userReq)
     return response.data
   } catch (error) {
     console.log(error)

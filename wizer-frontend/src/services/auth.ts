@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 
 import { API_URL_AUTH } from "@/lib/constants";
 import User from "@/models/User";
+import store from "@/store/store";
 
 
 type Auth = {
@@ -17,6 +18,10 @@ async function login(user: User) {
       password: user.password
     }
     const response: AxiosResponse<Auth> = await axios.post(API_URL_AUTH, userReq)
+
+    if (response.data.isValid) {
+      store.setSessionToken(response.data.token)
+    }
     return response.data
 
   } catch (error) {
@@ -27,7 +32,6 @@ async function login(user: User) {
 
 
 async function isSessionValid(token: string) {
-
   try {
     const isValidSessionResponse: AxiosResponse<String> = await axios.post(API_URL_AUTH + "/validate", token)
 
