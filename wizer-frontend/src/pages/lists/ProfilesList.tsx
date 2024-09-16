@@ -17,8 +17,8 @@ const renderProfileItem = (profile: { id: number; name: string; user: string }, 
 // </div>
 
 const ProfileList = () => {
-  const columns = ["Id", "Name", "User"]
-  const emptyItems = Array.from({ length: 20 }).map(() => ({}));
+  const columns = ["Id", "Name", "User", "Created", "Updated"]
+  const emptyItems = Array.from({ length: 2 }).map(() => ({}));
   const profiles = [
     { id: 1, name: "test 1", user: "user 1" },
     { id: 2, name: "test 2", user: "user 2" },
@@ -29,17 +29,19 @@ const ProfileList = () => {
 
 
   return (
-    <div className="flex flex-col">
-      <h2 className="text-2xl font-bold mb-4">Profiles</h2>
-      <div className="flex justify-center px-4 rounded-lg">
-        <List
-          items={diplayedProfiles}
-          renderItem={renderProfileItem}
-          columns={columns}
-          className="border rounded-lg p-2"
-        />
+    <>
+      <h3 className="text-2xl font-bold mb-4 text-center">Profiles</h3>
+      <div className="flex flex-row justify-center">
+        <div className="flex justify-center px-4 flex-grow">
+          <List
+            items={diplayedProfiles}
+            renderItem={renderProfileItem}
+            columns={columns}
+            className="border rounded-lg p-2"
+          />
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

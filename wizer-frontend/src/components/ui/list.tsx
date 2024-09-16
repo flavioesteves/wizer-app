@@ -9,11 +9,11 @@ type ListProps<T> = {
 
 const List: React.FC<ListProps<any>> = ({ items, renderItem, className, columns, ...otherProps }) => {
   return (
-    <table className={`table-auto ${className}`} {...otherProps}>
+    <table className={`table-auto flex-grow border-spacing-2 border border-slate-500 rounded-tl rounded-tr border-collapse ${className}`} {...otherProps}>
       <thead>
         <tr>
           {columns.map((column, index) => (
-            <th key={index} className="px-4 py-2">{column}</th>
+            <th key={index} className="px-4 py-2 border border-slate-500">{column}</th>
           ))}
         </tr>
       </thead>
@@ -21,7 +21,7 @@ const List: React.FC<ListProps<any>> = ({ items, renderItem, className, columns,
         {items.map((item: any, index) => (
           <tr key={index}>
             {columns.map((column, columnIndex) => (
-              <td key={columnIndex} className="px-4 py-2">
+              <td key={columnIndex} className="px-4 py-2 border border-slate-500">
                 {renderItem(item, column)}
               </td>
             ))}
