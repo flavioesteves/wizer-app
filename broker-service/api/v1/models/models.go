@@ -30,14 +30,23 @@ type RequestRoutine struct {
 	UpdatedBy string            `json:"updated_by"`
 }
 
+type Step struct {
+	Description string `json:"description"`
+	ImageUrl    string `json:"image_url"`
+}
+
 type RequestExercise struct {
-	Id          string `json:"id"`
-	Name        string `json:"name"`
-	MuscleGroup string `json:"muscle_group"`
-	CreatedAt   string `json:"created_at"`
-	UpdatedAt   string `json:"updated_at"`
-	CreatedBy   string `json:"created_by"`
-	UpdatedBy   string `json:"updated_by"`
+	Id                   string `json:"id"`
+	Name                 string `json:"name"`
+	MuscleGroup          string `json:"muscle_group"`
+	Description          string `json:"description"`
+	Steps                []Step `json:"steps"`
+	VideoUrl             string `json:"video_url"`
+	VideoDurationSeconds int32  `json:"video_duration_seconds"`
+	CreatedAt            string `json:"created_at"`
+	UpdatedAt            string `json:"updated_at"`
+	CreatedBy            string `json:"created_by"`
+	UpdatedBy            string `json:"updated_by"`
 }
 
 type RequestAuthLogin struct {

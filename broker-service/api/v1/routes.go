@@ -7,7 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 
 	authservice "github.com/flavioesteves/wizer-app/broker/internal/grpc-services/v1/auth-service"
+	exerciseservice "github.com/flavioesteves/wizer-app/broker/internal/grpc-services/v1/exercise-service"
 	profileservice "github.com/flavioesteves/wizer-app/broker/internal/grpc-services/v1/profile-service"
+	routineservice "github.com/flavioesteves/wizer-app/broker/internal/grpc-services/v1/routine-service"
 	userservice "github.com/flavioesteves/wizer-app/broker/internal/grpc-services/v1/user-service"
 )
 
@@ -39,6 +41,14 @@ func Routes() http.Handler {
 	// Profile Service
 	profileRoutingGroup := router.Group("/v1/profiles")
 	profileservice.RegisterProfileRoutes(profileRoutingGroup)
+
+	// Routine Service
+	routineRoutingGroup := router.Group("/v1/routines")
+	routineservice.RegisterRoutineRoutes(routineRoutingGroup)
+
+	// Exercise Service
+	exerciseRoutingGroup := router.Group("/v1/exercises")
+	exerciseservice.RegisterExerciseRoutes(exerciseRoutingGroup)
 
 	return router
 }

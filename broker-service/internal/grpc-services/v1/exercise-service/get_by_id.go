@@ -1,4 +1,4 @@
-package profileservice
+package exerciseservice
 
 import (
 	"context"
@@ -10,16 +10,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetAllProfiles(c *gin.Context, sc pb.ProfileServiceClient) {
+func GetExercise(c *gin.Context, sc pb.ExerciseServiceClient) {
+	exerciseId := c.Param("id")
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	res, err := sc.GetAllProfiles(ctx, &pb.GetAllProfilesRequest{})
+	res, err := sc.GetExercise(ctx, &pb.GetExerciseRequest{Id: exerciseId})
 	if err != nil {
 		fmt.Printf("Unexpected error %v\n", err)
 	}
-	fmt.Printf("All Profiles were retrieved: %v\n", res)
+	fmt.Printf("Exercise was retrieved: %v\n", res)
 
 	c.JSON(http.StatusOK, res)
 }

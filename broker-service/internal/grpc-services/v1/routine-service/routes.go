@@ -10,5 +10,5 @@ func RegisterRoutineRoutes(rg *gin.RouterGroup) {
 	rg.PUT("", func(ctx *gin.Context) { UpdateRoutine(ctx, routineServiceClient) })
 
 	rg.GET("/:id", func(ctx *gin.Context) { GetRoutine(ctx, routineServiceClient) })
-	rg.DELETE("/:id", func(ctx *gin.Context) { DeleteProfile(ctx, routineServiceClient) })
+	rg.DELETE("/:id", func(ctx *gin.Context) { DeleteRoutine(ctx, routineServiceClient) })
 }

@@ -6,9 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/gin-gonic/gin"
-
 	pb "github.com/flavioesteves/wizer-app/broker/proto"
+	"github.com/gin-gonic/gin"
 )
 
 func DeleteRoutine(c *gin.Context, sc pb.RoutineServiceClient) {
@@ -20,7 +19,7 @@ func DeleteRoutine(c *gin.Context, sc pb.RoutineServiceClient) {
 	res, err := sc.DeleteRoutine(ctx, &pb.DeleteRoutineRequest{Id: routineId})
 
 	if err != nil {
-		fmt.Printf("Profile was deleted with id: %s", routineId)
+		fmt.Printf("Error in deleting Routine with id: %s", routineId)
 	}
 	fmt.Printf("Profile was deleted with id: %s", routineId)
 

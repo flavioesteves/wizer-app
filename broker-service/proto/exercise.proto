@@ -1,0 +1,64 @@
+
+syntax= "proto3";
+
+package broker;
+
+option go_package = "github.com/flavioesteves/wizer-app/broker/proto";
+
+import "google/protobuf/empty.proto";
+
+message Step {
+  string description = 1;
+  string image_url = 2;
+}
+
+message Exercise {
+  string id = 1;
+  string name = 2;
+  string muscle_group = 3;
+  string description = 4;
+  repeated Step steps = 5;
+  string video_url = 6;
+  int32 video_duration_seconds = 7;
+
+  string created_by = 8;
+  string updated_by = 9;
+  string created_at = 10;
+  string updated_at = 11;
+}
+
+message CreateExerciseRequest {
+  Exercise exercise = 1;
+}
+
+message GetExerciseRequest {
+  string id = 1;
+}
+
+message UpdateExerciseRequest {
+  Exercise exercise = 1;
+}
+
+message DeleteExerciseRequest {
+  string id = 1;
+}
+
+message GetAllExercisesRequest {
+  // Potential parameters for filtering, pagination
+}
+
+message GetAllExercisesResponse {
+  repeated Exercise exercises = 1;
+}
+
+message ExerciseResponse {
+  Exercise exercise = 1;
+}
+
+service ExerciseService {
+  rpc CreateExercise (CreateExerciseRequest) returns (ExerciseResponse);
+  rpc GetExercise (GetExerciseRequest) returns (ExerciseResponse);
+  rpc UpdateExercise (UpdateExerciseRequest) returns (ExerciseResponse);
+  rpc DeleteExercise (DeleteExerciseRequest) returns (google.protobuf.Empty);
+  rpc GetAllExercises (GetAllExercisesRequest) returns (GetAllExercisesResponse);
+}
