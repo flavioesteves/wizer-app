@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/flavioesteves/wizer-app/broker/api/v1/models"
-	pb "github.com/flavioesteves/wizer-app/broker/proto"
+	pb "github.com/flavioesteves/wizer-app/broker/proto/authentication"
 )
 
 func ValidateToken(c *gin.Context, sc pb.AuthenticationServiceClient) {

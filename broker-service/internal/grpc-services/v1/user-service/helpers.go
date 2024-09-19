@@ -1,7 +1,7 @@
 package userservice
 
 import (
-	pb "github.com/flavioesteves/wizer-app/broker/proto"
+	pb "github.com/flavioesteves/wizer-app/broker/proto/user"
 )
 
 func mapRoleToProtoBuf(role string) (pb.Role, error) {

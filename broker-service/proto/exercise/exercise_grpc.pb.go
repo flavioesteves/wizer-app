@@ -4,7 +4,7 @@
 // - protoc             v3.12.4
 // source: exercise.proto
 
-package proto
+package exercise
 
 import (
 	context "context"
@@ -20,11 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ExerciseService_CreateExercise_FullMethodName  = "/broker.ExerciseService/CreateExercise"
-	ExerciseService_GetExercise_FullMethodName     = "/broker.ExerciseService/GetExercise"
-	ExerciseService_UpdateExercise_FullMethodName  = "/broker.ExerciseService/UpdateExercise"
-	ExerciseService_DeleteExercise_FullMethodName  = "/broker.ExerciseService/DeleteExercise"
-	ExerciseService_GetAllExercises_FullMethodName = "/broker.ExerciseService/GetAllExercises"
+	ExerciseService_CreateExercise_FullMethodName  = "/exercise.ExerciseService/CreateExercise"
+	ExerciseService_GetExercise_FullMethodName     = "/exercise.ExerciseService/GetExercise"
+	ExerciseService_UpdateExercise_FullMethodName  = "/exercise.ExerciseService/UpdateExercise"
+	ExerciseService_DeleteExercise_FullMethodName  = "/exercise.ExerciseService/DeleteExercise"
+	ExerciseService_GetAllExercises_FullMethodName = "/exercise.ExerciseService/GetAllExercises"
 )
 
 // ExerciseServiceClient is the client API for ExerciseService service.
@@ -245,7 +245,7 @@ func _ExerciseService_GetAllExercises_Handler(srv interface{}, ctx context.Conte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ExerciseService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "broker.ExerciseService",
+	ServiceName: "exercise.ExerciseService",
 	HandlerType: (*ExerciseServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

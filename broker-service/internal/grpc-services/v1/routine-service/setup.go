@@ -3,7 +3,7 @@ package routineservice
 import (
 	"fmt"
 
-	pb "github.com/flavioesteves/wizer-app/broker/proto"
+	pb "github.com/flavioesteves/wizer-app/broker/proto/routine"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )

@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/flavioesteves/wizer-app/broker/api/v1/models"
-	pb "github.com/flavioesteves/wizer-app/broker/proto"
+	pb "github.com/flavioesteves/wizer-app/broker/proto/exercise"
 )
 
 func CreateExercise(c *gin.Context, sc pb.ExerciseServiceClient) {

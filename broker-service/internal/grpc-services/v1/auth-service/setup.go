@@ -3,7 +3,7 @@ package authservice
 import (
 	"fmt"
 
-	pb "github.com/flavioesteves/wizer-app/broker/proto"
+	pb "github.com/flavioesteves/wizer-app/broker/proto/authentication"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )

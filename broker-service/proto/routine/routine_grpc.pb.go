@@ -4,7 +4,7 @@
 // - protoc             v3.12.4
 // source: routine.proto
 
-package proto
+package routine
 
 import (
 	context "context"
@@ -20,11 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RoutineService_CreateRoutine_FullMethodName  = "/broker.RoutineService/CreateRoutine"
-	RoutineService_GetRoutine_FullMethodName     = "/broker.RoutineService/GetRoutine"
-	RoutineService_UpdateRoutine_FullMethodName  = "/broker.RoutineService/UpdateRoutine"
-	RoutineService_DeleteRoutine_FullMethodName  = "/broker.RoutineService/DeleteRoutine"
-	RoutineService_GetAllRoutines_FullMethodName = "/broker.RoutineService/GetAllRoutines"
+	RoutineService_CreateRoutine_FullMethodName  = "/routine.RoutineService/CreateRoutine"
+	RoutineService_GetRoutine_FullMethodName     = "/routine.RoutineService/GetRoutine"
+	RoutineService_UpdateRoutine_FullMethodName  = "/routine.RoutineService/UpdateRoutine"
+	RoutineService_DeleteRoutine_FullMethodName  = "/routine.RoutineService/DeleteRoutine"
+	RoutineService_GetAllRoutines_FullMethodName = "/routine.RoutineService/GetAllRoutines"
 )
 
 // RoutineServiceClient is the client API for RoutineService service.
@@ -245,7 +245,7 @@ func _RoutineService_GetAllRoutines_Handler(srv interface{}, ctx context.Context
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var RoutineService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "broker.RoutineService",
+	ServiceName: "routine.RoutineService",
 	HandlerType: (*RoutineServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	pb "github.com/flavioesteves/wizer-app/broker/proto"
+	pb "github.com/flavioesteves/wizer-app/broker/proto/routine"
 	"github.com/gin-gonic/gin"
 )
 

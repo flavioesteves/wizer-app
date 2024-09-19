@@ -1,9 +1,9 @@
 
 syntax= "proto3";
 
-package broker;
+package exercise;
 
-option go_package = "github.com/flavioesteves/wizer-app/broker/proto";
+option go_package = "github.com/flavioesteves/wizer-app/broker/proto/exercise";
 
 import "google/protobuf/empty.proto";
 

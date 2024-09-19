@@ -9,10 +9,11 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/flavioesteves/wizer-app/broker/api/v1/models"
-	pb "github.com/flavioesteves/wizer-app/broker/proto"
+	pbE "github.com/flavioesteves/wizer-app/broker/proto/exercise"
+	pbR "github.com/flavioesteves/wizer-app/broker/proto/routine"
 )
 
-func CreateRoutine(c *gin.Context, sc pb.RoutineServiceClient) {
+func CreateRoutine(c *gin.Context, sc pbR.RoutineServiceClient) {
 	var requestRoutine models.RequestRoutine
 
 	if err := c.BindJSON(&requestRoutine); err != nil {
@@ -21,15 +22,15 @@ func CreateRoutine(c *gin.Context, sc pb.RoutineServiceClient) {
 		return
 	}
 
-	newRoutine := &pb.Routine{
+	newRoutine := &pbR.Routine{
 		ProfileId: requestRoutine.ProfileId,
-		Exercises: make([]*pb.Exercise, 0, len(requestRoutine.Exercises)), // Pre-allocate slice to populate the fiels with the logic
+		Exercises: make([]*pbE.Exercise, 0, len(requestRoutine.Exercises)), // Pre-allocate slice to populate the fiels with the logic
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	res, err := sc.CreateRoutine(ctx, &pb.CreateRoutineRequest{Routine: newRoutine})
+	res, err := sc.CreateRoutine(ctx, &pbR.CreateRoutineRequest{Routine: newRoutine})
 	if err != nil {
 		fmt.Printf("Unexpected error %v\n", err)
 	}

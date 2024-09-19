@@ -1,16 +1,17 @@
 syntax = "proto3";
 
-package broker;
+package routine;
 
-option go_package = "github.com/flavioesteves/wizer-app/broker/proto";
+option go_package = "github.com/flavioesteves/wizer-app/broker/proto/routine";
 
 import "google/protobuf/empty.proto";
+
 import "exercise.proto";
 
 message Routine {
   string id = 1;
   string profile_id = 2;
-  repeated Exercise exercises=3;
+  repeated exercise.Exercise exercises=3;
 
   string created_by = 4;
   string updated_by = 5;

@@ -3,7 +3,7 @@ package profileservice
 import (
 	"fmt"
 
-	pb "github.com/flavioesteves/wizer-app/broker/proto"
+	pb "github.com/flavioesteves/wizer-app/broker/proto/profile"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
@@ -16,6 +16,8 @@ func Connect() pb.ProfileServiceClient {
 	if err != nil {
 		fmt.Printf("Failed to connect: %v\n", err)
 	}
+
+	fmt.Println("Profile service connected")
 
 	return pb.NewProfileServiceClient(conn)
 }

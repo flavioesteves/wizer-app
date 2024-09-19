@@ -4,7 +4,7 @@
 // - protoc             v3.12.4
 // source: profile.proto
 
-package proto
+package profile
 
 import (
 	context "context"
@@ -20,11 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ProfileService_CreateProfile_FullMethodName  = "/broker.ProfileService/CreateProfile"
-	ProfileService_GetProfile_FullMethodName     = "/broker.ProfileService/GetProfile"
-	ProfileService_UpdateProfile_FullMethodName  = "/broker.ProfileService/UpdateProfile"
-	ProfileService_DeleteProfile_FullMethodName  = "/broker.ProfileService/DeleteProfile"
-	ProfileService_GetAllProfiles_FullMethodName = "/broker.ProfileService/GetAllProfiles"
+	ProfileService_CreateProfile_FullMethodName  = "/profile.ProfileService/CreateProfile"
+	ProfileService_GetProfile_FullMethodName     = "/profile.ProfileService/GetProfile"
+	ProfileService_UpdateProfile_FullMethodName  = "/profile.ProfileService/UpdateProfile"
+	ProfileService_DeleteProfile_FullMethodName  = "/profile.ProfileService/DeleteProfile"
+	ProfileService_GetAllProfiles_FullMethodName = "/profile.ProfileService/GetAllProfiles"
 )
 
 // ProfileServiceClient is the client API for ProfileService service.
@@ -245,7 +245,7 @@ func _ProfileService_GetAllProfiles_Handler(srv interface{}, ctx context.Context
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ProfileService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "broker.ProfileService",
+	ServiceName: "profile.ProfileService",
 	HandlerType: (*ProfileServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

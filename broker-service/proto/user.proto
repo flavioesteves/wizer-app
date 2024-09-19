@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package user;
 
-option  go_package = "github.com/flavioesteves/wizer-app/broker/proto";
+option  go_package = "github.com/flavioesteves/wizer-app/broker/proto/user";
 
 import "google/protobuf/empty.proto";
 
