@@ -4,14 +4,15 @@ export type Step = {
 }
 
 export type Exercise = {
-  id: string;
+  id?: string;
   name: string;
+  description: string;
   muscle_group: string;
   steps: Step[];
   video_url: string;
   video_duration_seconds: number;
 }
-export const ExerciseColumns = ["Id", "Name", "Muscle Group", "Steps", "Video", "Video Duration"];
+export const ExerciseColumns = ["Id", "Name", "Description", "Muscle Group", "Steps", "Video", "Video Duration"];
 
 
 export default Exercise;

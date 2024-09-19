@@ -1,9 +1,10 @@
 import { useState } from "react";
 
 import Sidebar from "./Sidebar";
+import Button from "./ui/button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fas } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 
 const MainNavigation = () => {
@@ -18,9 +19,9 @@ const MainNavigation = () => {
   return (
     <>
       <header className="flex justify-between items-center p-4 border-2 border-b-gray-400">
-        <button onClick={toogleSideBar}>
-          <FontAwesomeIcon icon={fas.faBars} size="lg" className="border-2 rounded-md hover:bg-gray-400" border />
-        </button>
+        <Button variant="secondary" onClick={toogleSideBar} >
+          <FontAwesomeIcon icon={faBars} size="lg" className="fa-fw" />
+        </Button>
         <img
           className="flex-none"
           src="/wizer1.svg"

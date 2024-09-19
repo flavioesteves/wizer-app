@@ -5,7 +5,6 @@ function MainLayout() {
   return (
     <>
       <MainNavigation />
-      <h1>Main Layout</h1>
       <main>
         <Outlet />
       </main>

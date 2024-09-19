@@ -10,7 +10,9 @@ type GetAllExercisesResponse = {
 async function getAll() {
   try {
     const response: AxiosResponse<GetAllExercisesResponse> = await axios.get(API_URL_EXERCISES)
+    console.log("Get all", response.data.exercises)
     return response.data.exercises;
+
   } catch (error) {
     console.error(error)
     return null;
