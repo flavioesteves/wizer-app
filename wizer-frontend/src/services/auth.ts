@@ -18,6 +18,8 @@ async function login(user: User) {
       password: user.password
     }
     const response: AxiosResponse<Auth> = await axios.post(API_URL_AUTH, userReq)
+    console.log("Auth Response:", response)
+
 
     if (response.data.isValid) {
       store.setSessionToken(response.data.token)

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import Sidebar from "./Sidebar";
 import Button from "./ui/button";
@@ -30,10 +31,7 @@ const MainNavigation = () => {
         />
         <ul className="flex space-x-4">
           <li>
-            <a href="#" className="hover:text-gray-400 px-3 py-2 rounded-md"
-            >
-              Home
-            </a>
+            <Link to={"/"}>Home</Link>
           </li>
           <li>
             <a href="#" className="hover:text-gray-400 px-3 py-2 rounded-md">

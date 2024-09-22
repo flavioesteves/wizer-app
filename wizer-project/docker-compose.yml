@@ -37,6 +37,7 @@ services:
       REDIS_PASSWORD: redis_password
       REDIS_DB: 0
       REDIS_ADDRESS: redis:6379
+      CLAIMS_KEY: something
       DSN: "host=postgres port=5432 user=postgres password=password dbname=wizer_app sslmode=disable timezone=UTC connect_timeout=5"
 
 
