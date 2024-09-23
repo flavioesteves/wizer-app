@@ -1,10 +1,25 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import store from "@/store/store";
-
+import * as jwt from "@/lib/auth";
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
-  const isLoggedIn = store.getSessionToken()
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const checkTokenValidity = async () => {
+      const valid = await jwt.isTokenValid();
+      setIsLoggedIn(valid);
+    };
+
+    checkTokenValidity();
+  }, []);
+
+  //TODO: enter some animation to load
+  if (isLoggedIn === null) {
+
+    return <div>Loading ...</div>;
+  }
+
   return isLoggedIn ? children : <Navigate to="/login" />;
 };
 
