@@ -24,7 +24,10 @@ RUN corepack enable pnpm
 
 RUN pnpm install
 COPY . .
-RUN pnpm run build
+
+ARG VITE_CLAIMS_KEY
+
+RUN VITE_CLAIMS_KEY=$VITE_CLAIMS_KEY pnpm run build
 
 # Production stage
 FROM nginx:alpine
