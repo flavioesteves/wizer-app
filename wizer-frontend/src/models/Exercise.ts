@@ -12,7 +12,16 @@ export type Exercise = {
   video_url: string;
   video_duration_seconds: number;
 }
-export const ExerciseColumns = ["Id", "Name", "Description", "Muscle Group", "Steps", "Video", "Video Duration"];
 
+
+export const ColumnKeyMapping: Record<string, string> = {
+  //"Id": "id",
+  "Name": "name",
+  "Muscle Group": "muscle_group",
+  "Description": "description",
+  "Steps": "steps",
+  "Video": "video_url",
+  "Video Duration": "video_duration_seconds"
+}
 
 export default Exercise;

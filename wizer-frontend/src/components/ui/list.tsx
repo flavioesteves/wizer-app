@@ -4,24 +4,36 @@ import { cn } from "@/lib/utils";
 type ListProps<T> = {
   items: T[];
   renderItem: (item: T, column: string) => ReactNode;
-  columns: string[]
+  columnsHeaders: string[],
+  excludeKeys?: string[],
+  columnKeyMapping: Record<string, string>; // Mapping of headers to keys
   className?: string;
+  children?: ReactNode,
 }
 
 
 
-const List: React.FC<ListProps<any>> = ({ items, renderItem, className, columns, ...otherProps }) => {
+const List: React.FC<ListProps<any>> = ({
+  children,
+  renderItem,
+  items,
+  className,
+  columnsHeaders,
+  excludeKeys = [],
+  columnKeyMapping,
+  ...otherProps
+}) => {
   const listClasses = cn(`min-w-full divide-y divide-gray-200`, className)
+  const allKeys = items.length > 0 ? (Object.keys(items[0]) as string[]) : [];
+  console.log("AllKeys:", allKeys)
+  const filteredKeys = allKeys.filter(key => !excludeKeys.includes(key));
+  console.log("filteredKeys:", filteredKeys)
 
-  console.log("LIST columns: " + columns);
-  console.log("LIST renderItem: " + renderItem)
-  console.log("LIST items: " + items)
-
-  return (
+  return (<>
     <table className={listClasses} {...otherProps}>
       <thead className="bg-gray-100 text-gray-600">
         <tr>
-          {columns.map((column, index) => (
+          {columnsHeaders.map((column, index) => (
             <th key={index} className="px-6 py-3 text-left font-semibold border-b border-gray-300">{column}</th>
           ))}
         </tr>
@@ -29,15 +41,23 @@ const List: React.FC<ListProps<any>> = ({ items, renderItem, className, columns,
       <tbody className="bg-white divide-y divide-gray-200">
         {items.map((item: any, index) => (
           <tr key={index} className="hover:bg-gray-50 transition-colors duration-200">
-            {columns.map((column, columnIndex) => (
-              <td key={columnIndex} className="px-6 py-4 whitespace-nowrap text-gray-800 border-b border-gray-300">
-                {renderItem(item, column)}
-              </td>
-            ))}
+            {columnsHeaders.map((column, columnIndex) => {
+              const mappedKey = columnKeyMapping[column];
+              if (mappedKey && filteredKeys.includes(mappedKey)) {
+                return (
+                  <td key={columnIndex} className="px-6 py-4 whitespace-nowrap text-gray-800 border-b border-gray-300">
+                    {renderItem(item, mappedKey)}
+                  </td>
+                );
+              }
+              return null;
+            })}
+            {children}
           </tr>
         ))}
       </tbody>
     </table>
+  </>
   )
 }
 

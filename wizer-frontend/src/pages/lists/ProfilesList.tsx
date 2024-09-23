@@ -1,4 +1,6 @@
 import List from "@/components/ui/list";
+import { ColumnKeyMapping } from "@/models/Profile";
+
 const renderProfileItem = (profile: { id: number; name: string; user: string }, column: string) => {
   switch (column) {
     case "Id":
@@ -34,9 +36,10 @@ const ProfileList = () => {
       <div className="flex flex-row justify-center">
         <div className="flex justify-center px-4 flex-grow">
           <List
+            columnKeyMapping={ColumnKeyMapping}
             items={diplayedProfiles}
             renderItem={renderProfileItem}
-            columns={columns}
+            columnsHeaders={columns}
             className="border rounded-lg p-2"
           />
         </div>
