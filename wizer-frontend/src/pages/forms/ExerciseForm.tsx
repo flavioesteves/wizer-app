@@ -135,13 +135,13 @@ const ExerciseForm: React.FC = () => {
                     onChange={(e) => handleStepChange(index, e)}
                     className="p-2 block w-full border border-gray-300 rounded-md"
                   />
-                  <Button
+                  {exercise.steps.length > 1 && (<Button
                     type="button"
                     variant="red"
                     onClick={() => removeStep(index)}
                   >
                     Remove
-                  </Button>
+                  </Button>)}
                 </div>
               </div>
             ))}
