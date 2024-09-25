@@ -1,20 +1,27 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Sidebar from "./Sidebar";
 import Button from "./ui/button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 
 const MainNavigation = () => {
+  const navigate = useNavigate();
+
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+
 
   const toogleSideBar = () => {
     setIsSidebarOpen((prevState) => {
       return !prevState;
     })
+  }
+
+  const handleBack = () => {
+    navigate(-1);
   }
 
   return (
@@ -43,6 +50,9 @@ const MainNavigation = () => {
               Contact
             </a>
           </li>
+          <Button variant="secondary" onClick={handleBack}>
+            <FontAwesomeIcon icon={faCircleChevronLeft} size="lg" className="fa=fw" />
+          </Button>
         </ul>
       </header >
       {isSidebarOpen && <Sidebar isOpen={isSidebarOpen} />
