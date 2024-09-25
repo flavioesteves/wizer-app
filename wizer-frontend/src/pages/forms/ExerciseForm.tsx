@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Exercise } from "@/models/Exercise";
 import Button from "@/components/ui/button";
 import api from "@/services/api";
 
 const ExerciseForm: React.FC = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const isNew = !id;
+
 
   const [exercise, setExercise] = useState<Exercise>({
     id: id ?? "",
@@ -61,16 +63,17 @@ const ExerciseForm: React.FC = () => {
       description: exercise.description,
       steps: exercise.steps,
       video_url: exercise.video_url,
-      video_duration_seconds: exercise.video_duration_seconds,
+      video_duration_seconds: parseInt(exercise.video_duration_seconds.toString(), 10),
     }
-
     // api call
-
-    let res = await api.exercise.create(newExercise);
-    if (res) {
-      console.log("Response: ", res)
+    try {
+      let res = await api.exercise.create(newExercise);
+      if (res) {
+        navigate("/exercises")
+      }
+    } catch (error) {
+      console.error(error)
     }
-    console.log("Exercise submitted:", exercise);
   }
 
   return (
@@ -166,7 +169,7 @@ const ExerciseForm: React.FC = () => {
             <label className="block text-gray-700 font-bold mb-2">Video Duration</label>
             <input
               type="number"
-              name="vide_duration"
+              name="video_duration_seconds"
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
               required

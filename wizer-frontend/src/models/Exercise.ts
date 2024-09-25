@@ -15,7 +15,6 @@ export type Exercise = {
 
 
 export const ColumnKeyMapping: Record<string, string> = {
-  //"Id": "id",
   "Name": "name",
   "Muscle Group": "muscle_group",
   "Description": "description",

@@ -14,7 +14,7 @@ export async function isTokenValid(): Promise<boolean> {
         return true;
       } else {
         sessionStorage.removeItem(SESSION_AUTH_TOKEN);
-        console.log("Session token has expired.");
+        console.warn("Session token has expired.");
         return false
       }
     }

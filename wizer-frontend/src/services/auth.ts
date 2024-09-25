@@ -18,8 +18,6 @@ async function login(user: User) {
       password: user.password
     }
     const response: AxiosResponse<Auth> = await axios.post(API_URL_AUTH, userReq)
-    console.log("Auth Response:", response)
-
 
     if (response.data.isValid) {
       store.setSessionToken(response.data.token)
@@ -27,7 +25,7 @@ async function login(user: User) {
     return response.data
 
   } catch (error) {
-    console.log(error)
+    console.error(error)
     return null
   }
 }
@@ -36,12 +34,10 @@ async function login(user: User) {
 async function isSessionValid(token: string) {
   try {
     const isValidSessionResponse: AxiosResponse<String> = await axios.post(API_URL_AUTH + "/validate", token)
-
-    console.log(isValidSessionResponse.data)
     return isValidSessionResponse.data;
 
   } catch (error) {
-    console.log(error)
+    console.error(error)
     return false
   }
 }

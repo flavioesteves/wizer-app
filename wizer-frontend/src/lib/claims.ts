@@ -22,7 +22,6 @@ export async function verifyToken(token: string, secretKey: string | undefined):
     const convertedSecret = new TextEncoder().encode(secretKey);
     const { payload } = await jose.jwtVerify(token, convertedSecret);
 
-    console.log(payload)
     return payload as Claims;
   } catch (error) {
     return null;

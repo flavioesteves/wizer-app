@@ -1,17 +1,23 @@
 import React, { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
+type Action = {
+  label: string;
+  onClick: (id: string) => void;
+  element?: ReactNode;
+}
+
 type ListProps<T> = {
   items: T[];
   renderItem: (item: T, column: string) => ReactNode;
-  columnsHeaders: string[],
-  excludeKeys?: string[],
+  columnsHeaders: string[];
+  excludeKeys?: string[];
   columnKeyMapping: Record<string, string>; // Mapping of headers to keys
   className?: string;
-  children?: ReactNode,
+  children?: ReactNode;
+  actions?: Action[];
+
 }
-
-
 
 const List: React.FC<ListProps<any>> = ({
   children,
@@ -21,13 +27,12 @@ const List: React.FC<ListProps<any>> = ({
   columnsHeaders,
   excludeKeys = [],
   columnKeyMapping,
+  actions = [],
   ...otherProps
 }) => {
   const listClasses = cn(`min-w-full divide-y divide-gray-200`, className)
   const allKeys = items.length > 0 ? (Object.keys(items[0]) as string[]) : [];
-  console.log("AllKeys:", allKeys)
   const filteredKeys = allKeys.filter(key => !excludeKeys.includes(key));
-  console.log("filteredKeys:", filteredKeys)
 
   return (<>
     <table className={listClasses} {...otherProps}>
@@ -52,11 +57,21 @@ const List: React.FC<ListProps<any>> = ({
               }
               return null;
             })}
+            <td>
+              {actions.map((action, actionIndex) => {
+                return React.cloneElement(
+                  action.element as React.ReactElement, {
+                  key: actionIndex,
+                  onClick: () => action.onClick(item.id),
+                }
+                );
+              })}
+            </td>
             {children}
           </tr>
         ))}
       </tbody>
-    </table>
+    </table >
   </>
   )
 }

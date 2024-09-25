@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Exercise, ColumnKeyMapping } from "@/models/Exercise";
 import api from "@/services/api";
 import List from "@/components/ui/list";
@@ -37,15 +37,19 @@ const renderExerciseItem = (exercise: Exercise, key: string) => {
 }
 
 
+
+
 const ExercisesList = () => {
+  const navigate = useNavigate();
   const excludedKeys: (keyof Exercise)[] = ["id"];
   const col = Object.keys(ColumnKeyMapping);
   const [exercises, setExercises] = useState<Exercise[]>([]);
+
+
   useEffect(() => {
     const fetchExercises = async () => {
       try {
         const response: Exercise[] | null = await api.exercise.getAll();
-        console.log(response)
         if (response) {
           setExercises(response)
         }
@@ -57,6 +61,34 @@ const ExercisesList = () => {
   }, []);
 
 
+  const handleEdit = (id: string) => {
+    navigate(`/exercises/${id}`)
+  }
+
+  const handleDelete = (id: string) => {
+    //TODO: Create modal components
+    if (window.confirm("Are you sure you want to delete this exercise?")) {
+      api.exercise.deleteExercise(id).then(() => {
+        setExercises((prev) => prev.filter((exercise) => exercise.id !== id));
+      }).catch((error) => console.error("Error deleting exercice:", error));
+    }
+  }
+
+
+  const actions = [
+    {
+      label: "Edit",
+      onClick: handleEdit,
+      element: <Button variant="primary">Edit</Button>
+    },
+    {
+      label: "Delete",
+      onClick: handleDelete,
+      element: <Button variant="red">Delete</Button>
+    }
+  ];
+
+
   return (
     <>
       <h3 className="text-2xl font-bold mb-4 text-center">Exercises</h3>
@@ -66,18 +98,16 @@ const ExercisesList = () => {
             excludeKeys={excludedKeys}
             items={exercises}
             renderItem={renderExerciseItem}
+            actions={actions}
             columnsHeaders={col}
             columnKeyMapping={ColumnKeyMapping}
             className="border rounded-lg p-2">
-            <div className="flex space-x-2">
-              <Button className="flex-1" variant="red">Delete</Button>
-              <Button className="flex-1" variant="primary">Edit</Button>
-            </div>
           </List>
         </div>
         <Link to="/exercises/new">
           <Button variant="green" className="rounded-full">
             <FontAwesomeIcon icon={faPlus} size="lg" className="fa-fw rounded-full" />
+            New
           </Button>
         </Link>
       </div >

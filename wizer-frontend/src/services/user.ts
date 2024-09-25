@@ -13,7 +13,7 @@ async function getAll() {
     const response: AxiosResponse<GetAllUsersResponse> = await axios.get(API_URL_USERS)
     return response.data.users;
   } catch (error) {
-    console.log(error)
+    console.error(error)
     return null
   }
 }
@@ -27,7 +27,7 @@ async function register(user: User) {
     const response: AxiosResponse<User> = await axios.post(API_URL_USERS_REGISTER, userReq)
     return response.data
   } catch (error) {
-    console.log(error)
+    console.error(error)
     return null
   }
 }

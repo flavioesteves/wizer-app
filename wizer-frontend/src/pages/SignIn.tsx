@@ -57,9 +57,6 @@ const SignIn = () => {
         ...prev,
         isRegister: true
       }));
-
-      console.log(res)
-
     }
   }
 
