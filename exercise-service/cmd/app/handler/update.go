@@ -13,6 +13,7 @@ func (s *ServerConfig) UpdateExercise(ctx context.Context, in *pb.UpdateExercise
 	updateExercise := &pb.Exercise{
 		Id:                   in.Exercise.Id,
 		Name:                 in.Exercise.Name,
+		Description:          in.Exercise.Description,
 		MuscleGroup:          in.Exercise.MuscleGroup,
 		Steps:                in.Exercise.Steps,
 		VideoUrl:             in.Exercise.VideoUrl,

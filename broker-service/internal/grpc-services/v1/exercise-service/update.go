@@ -20,6 +20,13 @@ func UpdateExercise(c *gin.Context, sc pb.ExerciseServiceClient) {
 	}
 	updatedSteps := make([]*pb.Step, 0, len(requestExercise.Steps))
 
+	for _, step := range requestExercise.Steps {
+		updatedSteps = append(updatedSteps, &pb.Step{
+			Description: step.Description,
+			ImageUrl:    step.ImageUrl,
+		})
+	}
+
 	updateExercise := &pb.Exercise{
 		Id:                   requestExercise.Id,
 		Name:                 requestExercise.Name,
