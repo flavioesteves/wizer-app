@@ -7,6 +7,10 @@ type GetAllExercisesResponse = {
   exercises: Exercise[];
 }
 
+type GetExerciseResponse = {
+  exercise: Exercise
+}
+
 async function getAll() {
   try {
     const response: AxiosResponse<GetAllExercisesResponse> = await axios.get(API_URL_EXERCISES)
@@ -23,17 +27,18 @@ async function create(newExercise: Exercise) {
     const response: AxiosResponse<Exercise> = await axios.post(API_URL_EXERCISES, newExercise)
     return response.data
   } catch (error) {
-    console.error(error)
+    console.error(error);
     return null;
   }
 }
 
 async function getExerciseById(id: string) {
   try {
-    const response: AxiosResponse<Exercise> = await axios.get(API_URL_EXERCISES + "/" + id);
-    return response.data;
+    const response: AxiosResponse<GetExerciseResponse> = await axios.get(API_URL_EXERCISES + "/" + id);
+    return response.data.exercise;
   } catch (error) {
-    console.error(error)
+    console.error(error);
+    return null;
   }
 }
 
@@ -43,6 +48,7 @@ async function updateExercise(updatedExercise: Exercise) {
     return response.data;
   } catch (error) {
     console.error(error);
+    return null;
   }
 }
 
@@ -52,6 +58,7 @@ async function deleteExercise(id: string) {
     return response.data;
   } catch (error) {
     console.error(error)
+    return null;
   }
 }
 
