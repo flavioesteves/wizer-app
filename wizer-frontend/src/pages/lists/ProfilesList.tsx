@@ -1,33 +1,81 @@
-import List from "@/components/ui/list";
-import { ColumnKeyMapping } from "@/models/Profile";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-const renderProfileItem = (profile: { id: number; name: string; user: string }, column: string) => {
-  switch (column) {
-    case "Id":
-      return (<p className="text-gray-700 font-semibold">{profile.id}</p>)
-    case "Name":
-      return (<p className="text-blue-500 font-semibold">{profile.name}</p>)
-    case "User":
-      return (<p className="text-blue-500 font-semibold">{profile.user}</p>)
+import api from "@/services/api";
+import List from "@/components/ui/list";
+import Button from "@/components/ui/button";
+import { ColumnKeyMapping, Profile } from "@/models/Profile";
+
+
+
+const renderProfileItem = (profile: Profile, key: string) => {
+  switch (key) {
+    case "user_id":
+      return (<p className="text-blue-500 font-semibold">{profile.user_id}</p>)
+    case "gender":
+      return (<p className="text-blue-500 font-semibold">{profile.gender}</p>)
+    case "birth_year":
+      return (<p className="text-blue-500 font-semibold">{profile.birth_year}</p>)
+    case "height_cm":
+      return (<p className="text-blue-500 font-semibold">{profile.height_cm}</p>)
+    case "weight_kg":
+      return (<p className="text-blue-500 font-semibold">{profile.weight_kg}</p>)
+    case "body_fat_percentage":
+      return (<p className="text-blue-500 font-semibold">{profile.body_fat_percentage}</p>)
+    case "goal":
+      return (<p className="text-blue-500 font-semibold">{profile.goal}</p>)
     default:
       return "";
   };
 }
-// <div className="flex justify-between items-center">
-//   <p className="text-gray-700">{profile.id}</p>
-//   <p className="text-blue-500">{profile.name}</p>
-// </div>
 
 const ProfileList = () => {
-  const columns = ["Id", "Name", "User", "Created", "Updated"]
-  const emptyItems = Array.from({ length: 2 }).map(() => ({}));
-  const profiles = [
-    { id: 1, name: "test 1", user: "user 1" },
-    { id: 2, name: "test 2", user: "user 2" },
-  ]
+  const navigate = useNavigate();
+  const excludedKeys: (keyof Profile)[] = ["id"];
+  const col = Object.keys(ColumnKeyMapping);
+  const [profiles, setProfiles] = useState<Profile[]>([]);
 
-  const diplayedProfiles = [...profiles, ...emptyItems].slice(0, 20);
 
+  useEffect(() => {
+    const fetchProfiles = async () => {
+      try {
+        const response: Profile[] | null = await api.profile.getAll();
+        if (response) {
+          setProfiles(response)
+        }
+      } catch (error) {
+        console.error("Error fetching profiles:", error)
+      }
+    };
+    fetchProfiles();
+  }, []);
+
+
+  const handleEdit = (id: string) => {
+    navigate(`/profiles/${id}`)
+  }
+
+  const handleDelete = (id: string) => {
+    console.log(id)
+    //TODO: Create modal components
+  }
+
+
+
+  const actions = [
+    {
+      label: "Edit",
+      onClick: handleEdit,
+      element: <Button variant="primary">Edit</Button>
+    },
+    {
+      label: "Delete",
+      onClick: handleDelete,
+      element: <Button variant="red">Delete</Button>
+    }
+  ];
 
 
   return (
@@ -36,13 +84,21 @@ const ProfileList = () => {
       <div className="flex flex-row justify-center">
         <div className="flex justify-center px-4 flex-grow">
           <List
+            excludeKeys={excludedKeys}
             columnKeyMapping={ColumnKeyMapping}
-            items={diplayedProfiles}
+            items={profiles}
             renderItem={renderProfileItem}
-            columnsHeaders={columns}
-            className="border rounded-lg p-2"
-          />
+            actions={actions}
+            columnsHeaders={col}
+            className="border rounded-lg p-2">
+          </List>
         </div>
+        <Link to="/profiles/new">
+          <Button variant="green" className="rounded-full">
+            <FontAwesomeIcon icon={faPlus} size="lg" className="fa-fw rounded-full" />
+            New
+          </Button>
+        </Link>
       </div>
     </>
   )

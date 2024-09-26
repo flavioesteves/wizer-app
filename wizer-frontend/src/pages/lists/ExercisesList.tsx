@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Exercise, ColumnKeyMapping } from "@/models/Exercise";
-import api from "@/services/api";
-import List from "@/components/ui/list";
-import Button from "@/components/ui/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
+import api from "@/services/api";
+import { Exercise, ColumnKeyMapping } from "@/models/Exercise";
+import List from "@/components/ui/list";
+import Button from "@/components/ui/button";
 
 
 

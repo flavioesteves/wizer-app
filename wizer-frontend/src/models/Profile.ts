@@ -18,3 +18,5 @@ export const ColumnKeyMapping: Record<string, string> = {
   "Body Fat %": "body_fat_percentage",
   "Goal": "goal",
 }
+
+export default Profile;
