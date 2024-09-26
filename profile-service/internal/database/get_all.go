@@ -13,7 +13,7 @@ func GetAll(db *sql.DB) ([]*pb.Profile, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	query := `SELECT id, user_id, gender, birth_year, height_cm, weight_kg, body_fat_percentafe, goal, created_at, updated_at 
+	query := `SELECT id, user_id, gender, birth_year, height_cm, weight_kg, body_fat_percentage, goal, created_at, updated_at 
     FROM PROFILES ORDER by created_at`
 
 	rows, err := db.QueryContext(ctx, query)
