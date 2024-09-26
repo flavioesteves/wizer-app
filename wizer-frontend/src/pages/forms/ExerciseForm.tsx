@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Exercise } from "@/models/Exercise";
 import Button from "@/components/ui/button";
@@ -59,8 +59,8 @@ const ExerciseForm: React.FC = () => {
 
     const newExercise: Exercise = {
       name: exercise.name,
-      muscle_group: exercise.muscle_group,
       description: exercise.description,
+      muscle_group: exercise.muscle_group,
       steps: exercise.steps,
       video_url: exercise.video_url,
       video_duration_seconds: parseInt(exercise.video_duration_seconds.toString(), 10),
@@ -76,6 +76,49 @@ const ExerciseForm: React.FC = () => {
     }
   }
 
+  const handleUpdate = async () => {
+
+    const updatedExercise: Exercise = {
+      id: id,
+      name: exercise.name,
+      description: exercise.description,
+      muscle_group: exercise.muscle_group,
+      steps: exercise.steps,
+      video_url: exercise.video_url,
+      video_duration_seconds: parseInt(exercise.video_duration_seconds.toString(), 10),
+    }
+
+    try {
+      let res = await api.exercise.updateExercise(updatedExercise);
+      if (res) {
+        navigate("/exercises")
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+
+
+  useEffect(() => {
+    const fetchExercise = async () => {
+      if (id) {
+
+        try {
+          const response: Exercise | null = await api.exercise.getExerciseById(id);
+          if (response) {
+            setExercise({
+              ...response,
+              steps: response.steps ?? [{ description: "", image_url: "" }]
+            });
+          }
+        } catch (error) { console.error("Error fetching exercise:", error) }
+
+      }
+    };
+    fetchExercise();
+  }, [id]);
+
   return (
     <>
       <div className="max-w-2xl mx-auto mt-10">
@@ -87,6 +130,7 @@ const ExerciseForm: React.FC = () => {
             <input
               type="text"
               name="name"
+              value={exercise.name}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
               required
@@ -94,10 +138,11 @@ const ExerciseForm: React.FC = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block texwwwt-gray-700 font-bold mb-2">Descritpion</label>
+            <label className="block text-gray-700 font-bold mb-2">Description</label>
             <input
               type="text"
               name="description"
+              value={exercise.description}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
               required
@@ -108,6 +153,7 @@ const ExerciseForm: React.FC = () => {
             <input
               type="text"
               name="muscle_group"
+              value={exercise.muscle_group}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
               required
@@ -159,6 +205,7 @@ const ExerciseForm: React.FC = () => {
             <input
               type="text"
               name="video_url"
+              value={exercise.video_url}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
               required
@@ -170,15 +217,16 @@ const ExerciseForm: React.FC = () => {
             <input
               type="number"
               name="video_duration_seconds"
+              value={exercise.video_duration_seconds}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
               required
             />
           </div>
-
-          <Button type="submit">
-            {isNew ? "Create Exercise" : "Update Exercise"}
-          </Button>
+          {isNew ?
+            <Button type="submit">Create Exercise</Button> :
+            <Button type="button" onClick={handleUpdate}>Update Exercise</Button>
+          }
         </form>
       </div>
 
