@@ -62,6 +62,7 @@ async function deleteRoutine(id: string) {
 
 export default {
   create,
+  deleteRoutine,
   getAll,
   getRoutineById,
   updatedRoutine,

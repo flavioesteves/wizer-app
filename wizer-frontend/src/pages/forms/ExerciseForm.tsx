@@ -67,8 +67,8 @@ const ExerciseForm: React.FC = () => {
     }
     // api call
     try {
-      let res = await api.exercise.create(newExercise);
-      if (res) {
+      let response = await api.exercise.create(newExercise);
+      if (response) {
         navigate("/exercises")
       }
     } catch (error) {
@@ -112,8 +112,9 @@ const ExerciseForm: React.FC = () => {
               steps: response.steps ?? [{ description: "", image_url: "" }]
             });
           }
-        } catch (error) { console.error("Error fetching exercise:", error) }
-
+        } catch (error) {
+          console.error("Error fetching exercise:", error)
+        }
       }
     };
     fetchExercise();

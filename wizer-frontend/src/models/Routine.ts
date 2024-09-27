@@ -1,7 +1,7 @@
 import Exercise from "@/models/Exercise";
 
 export type Routine = {
-  id: string;
+  id?: string;
   name: string;
   profile_id: string;
   exercises: Exercise[];
