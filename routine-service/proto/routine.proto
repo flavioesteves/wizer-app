@@ -30,13 +30,14 @@ message Exercise {
 
 message Routine {
   string id = 1;
-  string profile_id = 2;
-  repeated Exercise exercises=3;
+  string name = 2;
+  string profile_id = 3;
+  repeated Exercise exercises = 4;
 
-  string created_by = 4;
-  string updated_by = 5;
-  string created_at = 6;
-  string updated_at = 7;
+  string created_by = 5;
+  string updated_by = 6;
+  string created_at = 7;
+  string updated_at = 8;
 }
 
 message CreateRoutineRequest {
@@ -52,7 +53,7 @@ message UpdateRoutineRequest {
 }
 
 message DeleteRoutineRequest {
-  string id =1;
+  string id = 1;
 }
 
 message GetAllRoutinesRequest {
@@ -60,7 +61,7 @@ message GetAllRoutinesRequest {
 }
 
 message GetAllRoutinesResponse {
-  repeated Routine routines =1;
+  repeated Routine routines = 1;
 }
 
 message RoutineResponse {

@@ -22,6 +22,7 @@ type RequestUser struct {
 
 type RequestRoutine struct {
 	Id        string            `json:"id"`
+	Name      string            `json:"name"`
 	ProfileId string            `json:"profile_id"`
 	Exercises []RequestExercise `json:"exercises"`
 	CreatedAt string            `json:"created_at"`

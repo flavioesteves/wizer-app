@@ -23,6 +23,7 @@ func Get(db *sql.DB, id string) (*pb.Routine, error) {
 
 	err := db.QueryRowContext(ctx, query, id).Scan(
 		&routine.Id,
+		&routine.Name,
 		&routine.ProfileId,
 		pq.Array(&routine.Exercises),
 		&routine.CreatedBy,

@@ -23,6 +23,7 @@ func UpdateRoutine(c *gin.Context, sc pbR.RoutineServiceClient) {
 
 	updateRoutine := &pbR.Routine{
 		Id:        requestRoutine.Id,
+		Name:      requestRoutine.Name,
 		ProfileId: requestRoutine.ProfileId,
 		Exercises: make([]*pbE.Exercise, 0, len(requestRoutine.Exercises)), // Pre-allocate slice to populate the fiels with the logic
 	}

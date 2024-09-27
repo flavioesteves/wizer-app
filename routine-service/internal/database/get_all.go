@@ -14,7 +14,7 @@ func GetAll(db *sql.DB) ([]*pb.Routine, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	query := `SELECT id, profile_id, exercises, created_by, created_at, updated_by, updated_at
+	query := `SELECT id, name ,profile_id, exercises, created_by, created_at, updated_by, updated_at
     FROM routines ORDER by created_at`
 
 	rows, err := db.QueryContext(ctx, query)
@@ -30,6 +30,7 @@ func GetAll(db *sql.DB) ([]*pb.Routine, error) {
 
 		err := rows.Scan(
 			&routine.Id,
+			&routine.Name,
 			&routine.ProfileId,
 			pq.Array(&routine.Exercises),
 			&routine.CreatedAt,

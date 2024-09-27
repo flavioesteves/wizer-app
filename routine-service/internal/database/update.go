@@ -16,12 +16,12 @@ func Update(db *sql.DB, routine *pb.Routine) (*pb.Routine, error) {
 
 	query := `
     UPDATE routines
-    SET profile_id=$1, exercises=$2, updated_by=$3, updated_at=now()
-    WHERE id=$4
-    RETURNING id, profile_id, exercises, updated_by, created_by, updated_at, created_at
-  `
+    SET name=$1 profile_id=$2, exercises=$3, updated_by=$4, updated_at=now()
+    WHERE id=$5
+    RETURNING *`
 
 	args := []any{
+		routine.Name,
 		routine.ProfileId,
 		routine.Exercises,
 		routine.UpdatedBy,
