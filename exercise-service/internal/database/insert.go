@@ -5,13 +5,10 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	"time"
 
 	pb "github.com/flavioesteves/wizer-app/exercise/proto"
 	_ "github.com/lib/pq"
 )
-
-const DB_TIMEOUT = time.Second * 5
 
 func Insert(db *sql.DB, exercise *pb.Exercise) (*pb.Exercise, error) {
 	newExercise := &pb.Exercise{}

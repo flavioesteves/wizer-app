@@ -64,7 +64,7 @@ message ExerciseResponse {
   Exercise exercise = 1;
 }
 
-message GetRoutinesByExerciseRequest {
+message GetRoutinesByExerciseIdRequest {
   string exercise_id = 1;
 }
 

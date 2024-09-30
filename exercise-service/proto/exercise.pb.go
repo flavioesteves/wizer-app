@@ -203,6 +203,101 @@ func (x *Exercise) GetUpdatedAt() string {
 	return ""
 }
 
+type Routine struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id        string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name      string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	ProfileId string `protobuf:"bytes,3,opt,name=profile_id,json=profileId,proto3" json:"profile_id,omitempty"`
+	CreatedBy string `protobuf:"bytes,4,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
+	UpdatedBy string `protobuf:"bytes,5,opt,name=updated_by,json=updatedBy,proto3" json:"updated_by,omitempty"`
+	CreatedAt string `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt string `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+}
+
+func (x *Routine) Reset() {
+	*x = Routine{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_exercise_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Routine) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Routine) ProtoMessage() {}
+
+func (x *Routine) ProtoReflect() protoreflect.Message {
+	mi := &file_exercise_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Routine.ProtoReflect.Descriptor instead.
+func (*Routine) Descriptor() ([]byte, []int) {
+	return file_exercise_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Routine) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Routine) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Routine) GetProfileId() string {
+	if x != nil {
+		return x.ProfileId
+	}
+	return ""
+}
+
+func (x *Routine) GetCreatedBy() string {
+	if x != nil {
+		return x.CreatedBy
+	}
+	return ""
+}
+
+func (x *Routine) GetUpdatedBy() string {
+	if x != nil {
+		return x.UpdatedBy
+	}
+	return ""
+}
+
+func (x *Routine) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *Routine) GetUpdatedAt() string {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return ""
+}
+
 type CreateExerciseRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -214,7 +309,7 @@ type CreateExerciseRequest struct {
 func (x *CreateExerciseRequest) Reset() {
 	*x = CreateExerciseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_exercise_proto_msgTypes[2]
+		mi := &file_exercise_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -227,7 +322,7 @@ func (x *CreateExerciseRequest) String() string {
 func (*CreateExerciseRequest) ProtoMessage() {}
 
 func (x *CreateExerciseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_exercise_proto_msgTypes[2]
+	mi := &file_exercise_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -240,7 +335,7 @@ func (x *CreateExerciseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateExerciseRequest.ProtoReflect.Descriptor instead.
 func (*CreateExerciseRequest) Descriptor() ([]byte, []int) {
-	return file_exercise_proto_rawDescGZIP(), []int{2}
+	return file_exercise_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *CreateExerciseRequest) GetExercise() *Exercise {
@@ -261,7 +356,7 @@ type GetExerciseRequest struct {
 func (x *GetExerciseRequest) Reset() {
 	*x = GetExerciseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_exercise_proto_msgTypes[3]
+		mi := &file_exercise_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -274,7 +369,7 @@ func (x *GetExerciseRequest) String() string {
 func (*GetExerciseRequest) ProtoMessage() {}
 
 func (x *GetExerciseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_exercise_proto_msgTypes[3]
+	mi := &file_exercise_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -287,7 +382,7 @@ func (x *GetExerciseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetExerciseRequest.ProtoReflect.Descriptor instead.
 func (*GetExerciseRequest) Descriptor() ([]byte, []int) {
-	return file_exercise_proto_rawDescGZIP(), []int{3}
+	return file_exercise_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetExerciseRequest) GetId() string {
@@ -308,7 +403,7 @@ type UpdateExerciseRequest struct {
 func (x *UpdateExerciseRequest) Reset() {
 	*x = UpdateExerciseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_exercise_proto_msgTypes[4]
+		mi := &file_exercise_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -321,7 +416,7 @@ func (x *UpdateExerciseRequest) String() string {
 func (*UpdateExerciseRequest) ProtoMessage() {}
 
 func (x *UpdateExerciseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_exercise_proto_msgTypes[4]
+	mi := &file_exercise_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -334,7 +429,7 @@ func (x *UpdateExerciseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateExerciseRequest.ProtoReflect.Descriptor instead.
 func (*UpdateExerciseRequest) Descriptor() ([]byte, []int) {
-	return file_exercise_proto_rawDescGZIP(), []int{4}
+	return file_exercise_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *UpdateExerciseRequest) GetExercise() *Exercise {
@@ -355,7 +450,7 @@ type DeleteExerciseRequest struct {
 func (x *DeleteExerciseRequest) Reset() {
 	*x = DeleteExerciseRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_exercise_proto_msgTypes[5]
+		mi := &file_exercise_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -368,7 +463,7 @@ func (x *DeleteExerciseRequest) String() string {
 func (*DeleteExerciseRequest) ProtoMessage() {}
 
 func (x *DeleteExerciseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_exercise_proto_msgTypes[5]
+	mi := &file_exercise_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -381,7 +476,7 @@ func (x *DeleteExerciseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteExerciseRequest.ProtoReflect.Descriptor instead.
 func (*DeleteExerciseRequest) Descriptor() ([]byte, []int) {
-	return file_exercise_proto_rawDescGZIP(), []int{5}
+	return file_exercise_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *DeleteExerciseRequest) GetId() string {
@@ -400,7 +495,7 @@ type GetAllExercisesRequest struct {
 func (x *GetAllExercisesRequest) Reset() {
 	*x = GetAllExercisesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_exercise_proto_msgTypes[6]
+		mi := &file_exercise_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -413,7 +508,7 @@ func (x *GetAllExercisesRequest) String() string {
 func (*GetAllExercisesRequest) ProtoMessage() {}
 
 func (x *GetAllExercisesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_exercise_proto_msgTypes[6]
+	mi := &file_exercise_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -426,7 +521,7 @@ func (x *GetAllExercisesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAllExercisesRequest.ProtoReflect.Descriptor instead.
 func (*GetAllExercisesRequest) Descriptor() ([]byte, []int) {
-	return file_exercise_proto_rawDescGZIP(), []int{6}
+	return file_exercise_proto_rawDescGZIP(), []int{7}
 }
 
 type GetAllExercisesResponse struct {
@@ -440,7 +535,7 @@ type GetAllExercisesResponse struct {
 func (x *GetAllExercisesResponse) Reset() {
 	*x = GetAllExercisesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_exercise_proto_msgTypes[7]
+		mi := &file_exercise_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -453,7 +548,7 @@ func (x *GetAllExercisesResponse) String() string {
 func (*GetAllExercisesResponse) ProtoMessage() {}
 
 func (x *GetAllExercisesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_exercise_proto_msgTypes[7]
+	mi := &file_exercise_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -466,7 +561,7 @@ func (x *GetAllExercisesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAllExercisesResponse.ProtoReflect.Descriptor instead.
 func (*GetAllExercisesResponse) Descriptor() ([]byte, []int) {
-	return file_exercise_proto_rawDescGZIP(), []int{7}
+	return file_exercise_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetAllExercisesResponse) GetExercises() []*Exercise {
@@ -487,7 +582,7 @@ type ExerciseResponse struct {
 func (x *ExerciseResponse) Reset() {
 	*x = ExerciseResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_exercise_proto_msgTypes[8]
+		mi := &file_exercise_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -500,7 +595,7 @@ func (x *ExerciseResponse) String() string {
 func (*ExerciseResponse) ProtoMessage() {}
 
 func (x *ExerciseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_exercise_proto_msgTypes[8]
+	mi := &file_exercise_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -513,12 +608,106 @@ func (x *ExerciseResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExerciseResponse.ProtoReflect.Descriptor instead.
 func (*ExerciseResponse) Descriptor() ([]byte, []int) {
-	return file_exercise_proto_rawDescGZIP(), []int{8}
+	return file_exercise_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ExerciseResponse) GetExercise() *Exercise {
 	if x != nil {
 		return x.Exercise
+	}
+	return nil
+}
+
+type GetRoutinesByExerciseIdRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ExerciseId string `protobuf:"bytes,1,opt,name=exercise_id,json=exerciseId,proto3" json:"exercise_id,omitempty"`
+}
+
+func (x *GetRoutinesByExerciseIdRequest) Reset() {
+	*x = GetRoutinesByExerciseIdRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_exercise_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetRoutinesByExerciseIdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRoutinesByExerciseIdRequest) ProtoMessage() {}
+
+func (x *GetRoutinesByExerciseIdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_exercise_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRoutinesByExerciseIdRequest.ProtoReflect.Descriptor instead.
+func (*GetRoutinesByExerciseIdRequest) Descriptor() ([]byte, []int) {
+	return file_exercise_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *GetRoutinesByExerciseIdRequest) GetExerciseId() string {
+	if x != nil {
+		return x.ExerciseId
+	}
+	return ""
+}
+
+type GetRoutinesByExerciseIdResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Routines []*Routine `protobuf:"bytes,1,rep,name=routines,proto3" json:"routines,omitempty"`
+}
+
+func (x *GetRoutinesByExerciseIdResponse) Reset() {
+	*x = GetRoutinesByExerciseIdResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_exercise_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetRoutinesByExerciseIdResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRoutinesByExerciseIdResponse) ProtoMessage() {}
+
+func (x *GetRoutinesByExerciseIdResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_exercise_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRoutinesByExerciseIdResponse.ProtoReflect.Descriptor instead.
+func (*GetRoutinesByExerciseIdResponse) Descriptor() ([]byte, []int) {
+	return file_exercise_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetRoutinesByExerciseIdResponse) GetRoutines() []*Routine {
+	if x != nil {
+		return x.Routines
 	}
 	return nil
 }
@@ -556,32 +745,54 @@ var file_exercise_proto_rawDesc = []byte{
 	0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x09, 0x52,
 	0x09, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x75, 0x70,
 	0x64, 0x61, 0x74, 0x65, 0x64, 0x5f, 0x61, 0x74, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09,
-	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x22, 0x47, 0x0a, 0x15, 0x43, 0x72, 0x65,
-	0x61, 0x74, 0x65, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x2e, 0x0a, 0x08, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e,
-	0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x52, 0x08, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69,
-	0x73, 0x65, 0x22, 0x24, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73,
-	0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x47, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x12, 0x2e, 0x0a, 0x08, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x45,
-	0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x52, 0x08, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73,
-	0x65, 0x22, 0x27, 0x0a, 0x15, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x45, 0x78, 0x65, 0x72, 0x63,
-	0x69, 0x73, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x18, 0x0a, 0x16, 0x47, 0x65,
-	0x74, 0x41, 0x6c, 0x6c, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x73, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x22, 0x4b, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x78,
-	0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x30, 0x0a, 0x09, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x22, 0xc8, 0x01, 0x0a, 0x07, 0x52, 0x6f,
+	0x75, 0x74, 0x69, 0x6e, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x70, 0x72, 0x6f,
+	0x66, 0x69, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x70,
+	0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x64, 0x5f, 0x62, 0x79, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x64, 0x42, 0x79, 0x12, 0x1d, 0x0a, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x64, 0x5f, 0x62, 0x79, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x75, 0x70, 0x64,
+	0x61, 0x74, 0x65, 0x64, 0x42, 0x79, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x64, 0x5f, 0x61, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x64, 0x41, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64,
+	0x5f, 0x61, 0x74, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x64, 0x41, 0x74, 0x22, 0x47, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x45, 0x78,
+	0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2e, 0x0a,
+	0x08, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x12, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x45, 0x78, 0x65, 0x72, 0x63,
+	0x69, 0x73, 0x65, 0x52, 0x08, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x22, 0x24, 0x0a,
+	0x12, 0x47, 0x65, 0x74, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x02, 0x69, 0x64, 0x22, 0x47, 0x0a, 0x15, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x45, 0x78, 0x65,
+	0x72, 0x63, 0x69, 0x73, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2e, 0x0a, 0x08,
+	0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12,
+	0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69,
+	0x73, 0x65, 0x52, 0x08, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x22, 0x27, 0x0a, 0x15,
+	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x18, 0x0a, 0x16, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x45,
+	0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22,
+	0x4b, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x41, 0x6c, 0x6c, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73,
+	0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x30, 0x0a, 0x09, 0x65, 0x78,
+	0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e,
+	0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73,
+	0x65, 0x52, 0x09, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x73, 0x22, 0x42, 0x0a, 0x10,
+	0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x2e, 0x0a, 0x08, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x0b, 0x32, 0x12, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x45, 0x78,
-	0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x52, 0x09, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65,
-	0x73, 0x22, 0x42, 0x0a, 0x10, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x08, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73,
-	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69,
-	0x73, 0x65, 0x2e, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x52, 0x08, 0x65, 0x78, 0x65,
-	0x72, 0x63, 0x69, 0x73, 0x65, 0x32, 0x9b, 0x03, 0x0a, 0x0f, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69,
+	0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x52, 0x08, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65,
+	0x22, 0x41, 0x0a, 0x1e, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x65, 0x73, 0x42,
+	0x79, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x5f, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73,
+	0x65, 0x49, 0x64, 0x22, 0x50, 0x0a, 0x1f, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e,
+	0x65, 0x73, 0x42, 0x79, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x49, 0x64, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2d, 0x0a, 0x08, 0x72, 0x6f, 0x75, 0x74, 0x69, 0x6e,
+	0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63,
+	0x69, 0x73, 0x65, 0x2e, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x65, 0x52, 0x08, 0x72, 0x6f, 0x75,
+	0x74, 0x69, 0x6e, 0x65, 0x73, 0x32, 0x8b, 0x04, 0x0a, 0x0f, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69,
 	0x73, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x4d, 0x0a, 0x0e, 0x43, 0x72, 0x65,
 	0x61, 0x74, 0x65, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x12, 0x1f, 0x2e, 0x65, 0x78,
 	0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x45, 0x78, 0x65,
@@ -607,6 +818,13 @@ var file_exercise_proto_rawDesc = []byte{
 	0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x1a, 0x21, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x41,
 	0x6c, 0x6c, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x6e, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e,
+	0x65, 0x73, 0x42, 0x79, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x49, 0x64, 0x12, 0x28,
+	0x2e, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x75,
+	0x74, 0x69, 0x6e, 0x65, 0x73, 0x42, 0x79, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x49,
+	0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x65, 0x78, 0x65, 0x72, 0x63,
+	0x69, 0x73, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x6f, 0x75, 0x74, 0x69, 0x6e, 0x65, 0x73, 0x42,
+	0x79, 0x45, 0x78, 0x65, 0x72, 0x63, 0x69, 0x73, 0x65, 0x49, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f,
 	0x6e, 0x73, 0x65, 0x42, 0x33, 0x5a, 0x31, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
 	0x6d, 0x2f, 0x66, 0x6c, 0x61, 0x76, 0x69, 0x6f, 0x65, 0x73, 0x74, 0x65, 0x76, 0x65, 0x73, 0x2f,
 	0x77, 0x69, 0x7a, 0x65, 0x72, 0x2d, 0x61, 0x70, 0x70, 0x2f, 0x65, 0x78, 0x65, 0x72, 0x63, 0x69,
@@ -625,18 +843,21 @@ func file_exercise_proto_rawDescGZIP() []byte {
 	return file_exercise_proto_rawDescData
 }
 
-var file_exercise_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_exercise_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_exercise_proto_goTypes = []any{
-	(*Step)(nil),                    // 0: exercise.Step
-	(*Exercise)(nil),                // 1: exercise.Exercise
-	(*CreateExerciseRequest)(nil),   // 2: exercise.CreateExerciseRequest
-	(*GetExerciseRequest)(nil),      // 3: exercise.GetExerciseRequest
-	(*UpdateExerciseRequest)(nil),   // 4: exercise.UpdateExerciseRequest
-	(*DeleteExerciseRequest)(nil),   // 5: exercise.DeleteExerciseRequest
-	(*GetAllExercisesRequest)(nil),  // 6: exercise.GetAllExercisesRequest
-	(*GetAllExercisesResponse)(nil), // 7: exercise.GetAllExercisesResponse
-	(*ExerciseResponse)(nil),        // 8: exercise.ExerciseResponse
-	(*empty.Empty)(nil),             // 9: google.protobuf.Empty
+	(*Step)(nil),                            // 0: exercise.Step
+	(*Exercise)(nil),                        // 1: exercise.Exercise
+	(*Routine)(nil),                         // 2: exercise.Routine
+	(*CreateExerciseRequest)(nil),           // 3: exercise.CreateExerciseRequest
+	(*GetExerciseRequest)(nil),              // 4: exercise.GetExerciseRequest
+	(*UpdateExerciseRequest)(nil),           // 5: exercise.UpdateExerciseRequest
+	(*DeleteExerciseRequest)(nil),           // 6: exercise.DeleteExerciseRequest
+	(*GetAllExercisesRequest)(nil),          // 7: exercise.GetAllExercisesRequest
+	(*GetAllExercisesResponse)(nil),         // 8: exercise.GetAllExercisesResponse
+	(*ExerciseResponse)(nil),                // 9: exercise.ExerciseResponse
+	(*GetRoutinesByExerciseIdRequest)(nil),  // 10: exercise.GetRoutinesByExerciseIdRequest
+	(*GetRoutinesByExerciseIdResponse)(nil), // 11: exercise.GetRoutinesByExerciseIdResponse
+	(*empty.Empty)(nil),                     // 12: google.protobuf.Empty
 }
 var file_exercise_proto_depIdxs = []int32{
 	0,  // 0: exercise.Exercise.steps:type_name -> exercise.Step
@@ -644,21 +865,24 @@ var file_exercise_proto_depIdxs = []int32{
 	1,  // 2: exercise.UpdateExerciseRequest.exercise:type_name -> exercise.Exercise
 	1,  // 3: exercise.GetAllExercisesResponse.exercises:type_name -> exercise.Exercise
 	1,  // 4: exercise.ExerciseResponse.exercise:type_name -> exercise.Exercise
-	2,  // 5: exercise.ExerciseService.CreateExercise:input_type -> exercise.CreateExerciseRequest
-	3,  // 6: exercise.ExerciseService.GetExercise:input_type -> exercise.GetExerciseRequest
-	4,  // 7: exercise.ExerciseService.UpdateExercise:input_type -> exercise.UpdateExerciseRequest
-	5,  // 8: exercise.ExerciseService.DeleteExercise:input_type -> exercise.DeleteExerciseRequest
-	6,  // 9: exercise.ExerciseService.GetAllExercises:input_type -> exercise.GetAllExercisesRequest
-	8,  // 10: exercise.ExerciseService.CreateExercise:output_type -> exercise.ExerciseResponse
-	8,  // 11: exercise.ExerciseService.GetExercise:output_type -> exercise.ExerciseResponse
-	8,  // 12: exercise.ExerciseService.UpdateExercise:output_type -> exercise.ExerciseResponse
-	9,  // 13: exercise.ExerciseService.DeleteExercise:output_type -> google.protobuf.Empty
-	7,  // 14: exercise.ExerciseService.GetAllExercises:output_type -> exercise.GetAllExercisesResponse
-	10, // [10:15] is the sub-list for method output_type
-	5,  // [5:10] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	2,  // 5: exercise.GetRoutinesByExerciseIdResponse.routines:type_name -> exercise.Routine
+	3,  // 6: exercise.ExerciseService.CreateExercise:input_type -> exercise.CreateExerciseRequest
+	4,  // 7: exercise.ExerciseService.GetExercise:input_type -> exercise.GetExerciseRequest
+	5,  // 8: exercise.ExerciseService.UpdateExercise:input_type -> exercise.UpdateExerciseRequest
+	6,  // 9: exercise.ExerciseService.DeleteExercise:input_type -> exercise.DeleteExerciseRequest
+	7,  // 10: exercise.ExerciseService.GetAllExercises:input_type -> exercise.GetAllExercisesRequest
+	10, // 11: exercise.ExerciseService.GetRoutinesByExerciseId:input_type -> exercise.GetRoutinesByExerciseIdRequest
+	9,  // 12: exercise.ExerciseService.CreateExercise:output_type -> exercise.ExerciseResponse
+	9,  // 13: exercise.ExerciseService.GetExercise:output_type -> exercise.ExerciseResponse
+	9,  // 14: exercise.ExerciseService.UpdateExercise:output_type -> exercise.ExerciseResponse
+	12, // 15: exercise.ExerciseService.DeleteExercise:output_type -> google.protobuf.Empty
+	8,  // 16: exercise.ExerciseService.GetAllExercises:output_type -> exercise.GetAllExercisesResponse
+	11, // 17: exercise.ExerciseService.GetRoutinesByExerciseId:output_type -> exercise.GetRoutinesByExerciseIdResponse
+	12, // [12:18] is the sub-list for method output_type
+	6,  // [6:12] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_exercise_proto_init() }
@@ -692,7 +916,7 @@ func file_exercise_proto_init() {
 			}
 		}
 		file_exercise_proto_msgTypes[2].Exporter = func(v any, i int) any {
-			switch v := v.(*CreateExerciseRequest); i {
+			switch v := v.(*Routine); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -704,7 +928,7 @@ func file_exercise_proto_init() {
 			}
 		}
 		file_exercise_proto_msgTypes[3].Exporter = func(v any, i int) any {
-			switch v := v.(*GetExerciseRequest); i {
+			switch v := v.(*CreateExerciseRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -716,7 +940,7 @@ func file_exercise_proto_init() {
 			}
 		}
 		file_exercise_proto_msgTypes[4].Exporter = func(v any, i int) any {
-			switch v := v.(*UpdateExerciseRequest); i {
+			switch v := v.(*GetExerciseRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -728,7 +952,7 @@ func file_exercise_proto_init() {
 			}
 		}
 		file_exercise_proto_msgTypes[5].Exporter = func(v any, i int) any {
-			switch v := v.(*DeleteExerciseRequest); i {
+			switch v := v.(*UpdateExerciseRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -740,7 +964,7 @@ func file_exercise_proto_init() {
 			}
 		}
 		file_exercise_proto_msgTypes[6].Exporter = func(v any, i int) any {
-			switch v := v.(*GetAllExercisesRequest); i {
+			switch v := v.(*DeleteExerciseRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -752,7 +976,7 @@ func file_exercise_proto_init() {
 			}
 		}
 		file_exercise_proto_msgTypes[7].Exporter = func(v any, i int) any {
-			switch v := v.(*GetAllExercisesResponse); i {
+			switch v := v.(*GetAllExercisesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -764,7 +988,43 @@ func file_exercise_proto_init() {
 			}
 		}
 		file_exercise_proto_msgTypes[8].Exporter = func(v any, i int) any {
+			switch v := v.(*GetAllExercisesResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_exercise_proto_msgTypes[9].Exporter = func(v any, i int) any {
 			switch v := v.(*ExerciseResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_exercise_proto_msgTypes[10].Exporter = func(v any, i int) any {
+			switch v := v.(*GetRoutinesByExerciseIdRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_exercise_proto_msgTypes[11].Exporter = func(v any, i int) any {
+			switch v := v.(*GetRoutinesByExerciseIdResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -782,7 +1042,7 @@ func file_exercise_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_exercise_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

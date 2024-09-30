@@ -13,6 +13,8 @@ import (
 	_ "github.com/jackc/pgx/v5/stdlib"
 )
 
+const DB_TIMEOUT = time.Second * 5
+
 func ConnectToDB() (*sql.DB, error) {
 	dsn := os.Getenv("DSN")
 
