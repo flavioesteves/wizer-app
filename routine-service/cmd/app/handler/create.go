@@ -13,8 +13,6 @@ func (s *ServerConfig) CreateRoutine(ctx context.Context, in *pb.CreateRoutineRe
 
 	newRoutine := &pb.Routine{
 		ProfileId: in.Routine.ProfileId,
-		//	Exercises: in.Routine.Exercises,
-		Exercises: in.Routine.Exercises,
 	}
 
 	routine, err := db.Insert(s.db, newRoutine)

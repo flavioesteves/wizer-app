@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS "exercises" (
   video_url VARCHAR(255),
   video_duration_seconds INT,
 
-  created_by VARCHAR(255) NOT NULL,
-  updated_by VARCHAR(255) NOT NULL,
+  created_by uuid NOT NULL REFERENCES users(id),
+  updated_by uuid NOT NULL REFERENCES users(id),
   created_at timestamp WITH TIME ZONE NOT NULL DEFAULT NOW(),
   updated_at timestamp WITH TIME ZONE NOT NULL DEFAULT NOW()
 )

@@ -11,11 +11,11 @@ const RoutineForm: React.FC = () => {
   const isNew = !id;
   const exercisePlaceholder: Exercise = {
     id: id ?? "",
-    name: "",
-    description: "",
-    muscle_group: "",
-    steps: [{ description: "", image_url: "" }],
-    video_url: "",
+    name: "r",
+    description: "r",
+    muscle_group: "r",
+    steps: [{ description: "r", image_url: "r" }],
+    video_url: "r",
     video_duration_seconds: 0,
   }
 

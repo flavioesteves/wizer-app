@@ -7,7 +7,6 @@ import (
 	"time"
 
 	pb "github.com/flavioesteves/wizer-app/routine/proto"
-	"github.com/lib/pq"
 )
 
 func Get(db *sql.DB, id string) (*pb.Routine, error) {
@@ -25,7 +24,6 @@ func Get(db *sql.DB, id string) (*pb.Routine, error) {
 		&routine.Id,
 		&routine.Name,
 		&routine.ProfileId,
-		pq.Array(&routine.Exercises),
 		&routine.CreatedBy,
 		&routine.UpdatedBy,
 		&routine.CreatedAt,

@@ -13,8 +13,7 @@ func (s *ServerConfig) UpdateRoutine(ctx context.Context, in *pb.UpdateRoutineRe
 	fmt.Printf("UpdatedRequest was invoked with %v\n", in)
 
 	updateRoutine := &pb.Routine{
-		Id:        in.Routine.Id,
-		Exercises: in.Routine.Exercises,
+		Id: in.Routine.Id,
 	}
 
 	routine, err := db.Update(s.db, updateRoutine)

@@ -8,7 +8,6 @@ import (
 	"time"
 
 	pb "github.com/flavioesteves/wizer-app/routine/proto"
-	"github.com/lib/pq"
 )
 
 func Update(db *sql.DB, routine *pb.Routine) (*pb.Routine, error) {
@@ -16,14 +15,13 @@ func Update(db *sql.DB, routine *pb.Routine) (*pb.Routine, error) {
 
 	query := `
     UPDATE routines
-    SET name=$1 profile_id=$2, exercises=$3, updated_by=$4, updated_at=now()
+    SET name=$1 profile_id=$2, updated_by=$3, updated_at=now()
     WHERE id=$5
     RETURNING *`
 
 	args := []any{
 		routine.Name,
 		routine.ProfileId,
-		routine.Exercises,
 		routine.UpdatedBy,
 		routine.Id,
 	}
@@ -35,7 +33,6 @@ func Update(db *sql.DB, routine *pb.Routine) (*pb.Routine, error) {
 	err := row.Scan(
 		&updatedRoutine.Id,
 		&updatedRoutine.ProfileId,
-		pq.Array(&updatedRoutine.Exercises),
 		&updatedRoutine.UpdatedBy,
 		&updatedRoutine.CreatedBy,
 		&updatedRoutine.UpdatedAt,

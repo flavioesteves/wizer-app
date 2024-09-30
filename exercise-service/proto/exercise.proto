@@ -26,6 +26,16 @@ message Exercise {
   string updated_at = 11;
 }
 
+message Routine {
+  string id = 1;
+  string name = 2;
+  string profile_id = 3;
+  string created_by = 4;
+  string updated_by = 5;
+  string created_at = 6;
+  string updated_at = 7;
+}
+
 message CreateExerciseRequest {
   Exercise exercise = 1;
 }
@@ -54,10 +64,22 @@ message ExerciseResponse {
   Exercise exercise = 1;
 }
 
+message GetRoutinesByExerciseRequest {
+  string exercise_id = 1;
+}
+
+message GetRoutinesByExerciseIdResponse {
+  repeated Routine routines = 1;
+}
+
+
 service ExerciseService {
   rpc CreateExercise (CreateExerciseRequest) returns (ExerciseResponse);
   rpc GetExercise (GetExerciseRequest) returns (ExerciseResponse);
   rpc UpdateExercise (UpdateExerciseRequest) returns (ExerciseResponse);
   rpc DeleteExercise (DeleteExerciseRequest) returns (google.protobuf.Empty);
   rpc GetAllExercises (GetAllExercisesRequest) returns (GetAllExercisesResponse);
+
+  // Relationship many to many Exercise <-> Routine
+  rpc GetRoutinesByExerciseId (GetRoutinesByExerciseIdRequest) returns (GetRoutinesByExerciseIdResponse);
 }
