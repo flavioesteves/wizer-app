@@ -75,7 +75,7 @@ message AddExerciseToRoutineRequest {
   repeated string exercise_ids = 2;
 }
 
-message AddExercissToRoutineResponse {
+message AddExerciseToRoutineResponse {
   bool success = 1;
 }
 
@@ -85,7 +85,7 @@ message RemoveExerciseFromRoutineRequest {
 }
 
 message RemoveExerciseFromRoutineResponse {
-  bool success = 2;
+  bool success = 1;
 }
 
 message GetExercisesByRoutineIdRequest {
@@ -106,7 +106,7 @@ service RoutineService {
   rpc GetAllRoutines (GetAllRoutinesRequest) returns (GetAllRoutinesResponse);
   
   // Relationship many to many Routine <-> Exercise
-  rpc AddExerciseToRoutine(AddExerciseToRoutineRequest) returns (AddExercissToRoutineResponse);
+  rpc AddExerciseToRoutine(AddExerciseToRoutineRequest) returns (AddExerciseToRoutineResponse);
   rpc RemoveExerciseFromRoutine (RemoveExerciseFromRoutineRequest) returns (RemoveExerciseFromRoutineResponse);
   rpc GetExercisesByRoutineId (GetExercisesByRoutineIdRequest) returns (GetExercisesByRoutineIdResponse);
 }
