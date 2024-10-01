@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package model;
+
+option go_package = "github.com/flavioesteves/wizer-app/broker/proto/model";
+
+
+message Step {
+  string description = 1;
+  string image_url = 2;
+}
+
+message Exercise {
+  string id = 1;
+  string name = 2;
+  string muscle_group = 3;
+  string description = 4;
+  repeated Step steps = 5;
+  string video_url = 6;
+  int32 video_duration_seconds = 7;
+
+  string created_by = 8;
+  string updated_by = 9;
+  string created_at = 10;
+  string updated_at = 11;
+}
+
+message Routine {
+  string id = 1;
+  string name = 2;
+  string profile_id = 3;
+
+  string created_by = 5;
+  string updated_by = 6;
+  string created_at = 7;
+  string updated_at = 8;
+}

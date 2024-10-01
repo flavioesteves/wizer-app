@@ -20,11 +20,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RoutineService_CreateRoutine_FullMethodName  = "/routine.RoutineService/CreateRoutine"
-	RoutineService_GetRoutine_FullMethodName     = "/routine.RoutineService/GetRoutine"
-	RoutineService_UpdateRoutine_FullMethodName  = "/routine.RoutineService/UpdateRoutine"
-	RoutineService_DeleteRoutine_FullMethodName  = "/routine.RoutineService/DeleteRoutine"
-	RoutineService_GetAllRoutines_FullMethodName = "/routine.RoutineService/GetAllRoutines"
+	RoutineService_CreateRoutine_FullMethodName             = "/routine.RoutineService/CreateRoutine"
+	RoutineService_GetRoutine_FullMethodName                = "/routine.RoutineService/GetRoutine"
+	RoutineService_UpdateRoutine_FullMethodName             = "/routine.RoutineService/UpdateRoutine"
+	RoutineService_DeleteRoutine_FullMethodName             = "/routine.RoutineService/DeleteRoutine"
+	RoutineService_GetAllRoutines_FullMethodName            = "/routine.RoutineService/GetAllRoutines"
+	RoutineService_AddExerciseToRoutine_FullMethodName      = "/routine.RoutineService/AddExerciseToRoutine"
+	RoutineService_RemoveExerciseFromRoutine_FullMethodName = "/routine.RoutineService/RemoveExerciseFromRoutine"
+	RoutineService_GetExercisesByRoutineId_FullMethodName   = "/routine.RoutineService/GetExercisesByRoutineId"
 )
 
 // RoutineServiceClient is the client API for RoutineService service.
@@ -36,6 +39,10 @@ type RoutineServiceClient interface {
 	UpdateRoutine(ctx context.Context, in *UpdateRoutineRequest, opts ...grpc.CallOption) (*RoutineResponse, error)
 	DeleteRoutine(ctx context.Context, in *DeleteRoutineRequest, opts ...grpc.CallOption) (*empty.Empty, error)
 	GetAllRoutines(ctx context.Context, in *GetAllRoutinesRequest, opts ...grpc.CallOption) (*GetAllRoutinesResponse, error)
+	// Relationship many to many Routine <-> Exercise
+	AddExerciseToRoutine(ctx context.Context, in *AddExerciseToRoutineRequest, opts ...grpc.CallOption) (*AddExerciseToRoutineResponse, error)
+	RemoveExerciseFromRoutine(ctx context.Context, in *RemoveExerciseFromRoutineRequest, opts ...grpc.CallOption) (*RemoveExerciseFromRoutineResponse, error)
+	GetExercisesByRoutineId(ctx context.Context, in *GetExercisesByRoutineIdRequest, opts ...grpc.CallOption) (*GetExercisesByRoutineIdResponse, error)
 }
 
 type routineServiceClient struct {
@@ -96,6 +103,36 @@ func (c *routineServiceClient) GetAllRoutines(ctx context.Context, in *GetAllRou
 	return out, nil
 }
 
+func (c *routineServiceClient) AddExerciseToRoutine(ctx context.Context, in *AddExerciseToRoutineRequest, opts ...grpc.CallOption) (*AddExerciseToRoutineResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddExerciseToRoutineResponse)
+	err := c.cc.Invoke(ctx, RoutineService_AddExerciseToRoutine_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *routineServiceClient) RemoveExerciseFromRoutine(ctx context.Context, in *RemoveExerciseFromRoutineRequest, opts ...grpc.CallOption) (*RemoveExerciseFromRoutineResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RemoveExerciseFromRoutineResponse)
+	err := c.cc.Invoke(ctx, RoutineService_RemoveExerciseFromRoutine_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *routineServiceClient) GetExercisesByRoutineId(ctx context.Context, in *GetExercisesByRoutineIdRequest, opts ...grpc.CallOption) (*GetExercisesByRoutineIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetExercisesByRoutineIdResponse)
+	err := c.cc.Invoke(ctx, RoutineService_GetExercisesByRoutineId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RoutineServiceServer is the server API for RoutineService service.
 // All implementations must embed UnimplementedRoutineServiceServer
 // for forward compatibility.
@@ -105,6 +142,10 @@ type RoutineServiceServer interface {
 	UpdateRoutine(context.Context, *UpdateRoutineRequest) (*RoutineResponse, error)
 	DeleteRoutine(context.Context, *DeleteRoutineRequest) (*empty.Empty, error)
 	GetAllRoutines(context.Context, *GetAllRoutinesRequest) (*GetAllRoutinesResponse, error)
+	// Relationship many to many Routine <-> Exercise
+	AddExerciseToRoutine(context.Context, *AddExerciseToRoutineRequest) (*AddExerciseToRoutineResponse, error)
+	RemoveExerciseFromRoutine(context.Context, *RemoveExerciseFromRoutineRequest) (*RemoveExerciseFromRoutineResponse, error)
+	GetExercisesByRoutineId(context.Context, *GetExercisesByRoutineIdRequest) (*GetExercisesByRoutineIdResponse, error)
 	mustEmbedUnimplementedRoutineServiceServer()
 }
 
@@ -129,6 +170,15 @@ func (UnimplementedRoutineServiceServer) DeleteRoutine(context.Context, *DeleteR
 }
 func (UnimplementedRoutineServiceServer) GetAllRoutines(context.Context, *GetAllRoutinesRequest) (*GetAllRoutinesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAllRoutines not implemented")
+}
+func (UnimplementedRoutineServiceServer) AddExerciseToRoutine(context.Context, *AddExerciseToRoutineRequest) (*AddExerciseToRoutineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddExerciseToRoutine not implemented")
+}
+func (UnimplementedRoutineServiceServer) RemoveExerciseFromRoutine(context.Context, *RemoveExerciseFromRoutineRequest) (*RemoveExerciseFromRoutineResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveExerciseFromRoutine not implemented")
+}
+func (UnimplementedRoutineServiceServer) GetExercisesByRoutineId(context.Context, *GetExercisesByRoutineIdRequest) (*GetExercisesByRoutineIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetExercisesByRoutineId not implemented")
 }
 func (UnimplementedRoutineServiceServer) mustEmbedUnimplementedRoutineServiceServer() {}
 func (UnimplementedRoutineServiceServer) testEmbeddedByValue()                        {}
@@ -241,6 +291,60 @@ func _RoutineService_GetAllRoutines_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RoutineService_AddExerciseToRoutine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddExerciseToRoutineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoutineServiceServer).AddExerciseToRoutine(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RoutineService_AddExerciseToRoutine_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoutineServiceServer).AddExerciseToRoutine(ctx, req.(*AddExerciseToRoutineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RoutineService_RemoveExerciseFromRoutine_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveExerciseFromRoutineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoutineServiceServer).RemoveExerciseFromRoutine(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RoutineService_RemoveExerciseFromRoutine_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoutineServiceServer).RemoveExerciseFromRoutine(ctx, req.(*RemoveExerciseFromRoutineRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RoutineService_GetExercisesByRoutineId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetExercisesByRoutineIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoutineServiceServer).GetExercisesByRoutineId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RoutineService_GetExercisesByRoutineId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoutineServiceServer).GetExercisesByRoutineId(ctx, req.(*GetExercisesByRoutineIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RoutineService_ServiceDesc is the grpc.ServiceDesc for RoutineService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -267,6 +371,18 @@ var RoutineService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAllRoutines",
 			Handler:    _RoutineService_GetAllRoutines_Handler,
+		},
+		{
+			MethodName: "AddExerciseToRoutine",
+			Handler:    _RoutineService_AddExerciseToRoutine_Handler,
+		},
+		{
+			MethodName: "RemoveExerciseFromRoutine",
+			Handler:    _RoutineService_RemoveExerciseFromRoutine_Handler,
+		},
+		{
+			MethodName: "GetExercisesByRoutineId",
+			Handler:    _RoutineService_GetExercisesByRoutineId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

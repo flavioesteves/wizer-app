@@ -6,22 +6,10 @@ option go_package = "github.com/flavioesteves/wizer-app/broker/proto/routine";
 
 import "google/protobuf/empty.proto";
 
-import "exercise.proto";
-
-message Routine {
-  string id = 1;
-  string name = 2;
-  string profile_id = 3;
-  repeated exercise.Exercise exercises = 4;
-
-  string created_by = 5;
-  string updated_by = 6;
-  string created_at = 7;
-  string updated_at = 8;
-}
+import "model.proto";
 
 message CreateRoutineRequest {
-  Routine routine = 1;
+  model.Routine routine = 1;
 }
 
 message GetRoutineRequest {
@@ -29,7 +17,7 @@ message GetRoutineRequest {
 }
 
 message UpdateRoutineRequest {
-  Routine routine = 1;
+  model.Routine routine = 1;
 }
 
 message DeleteRoutineRequest {
@@ -41,12 +29,41 @@ message GetAllRoutinesRequest {
 }
 
 message GetAllRoutinesResponse {
-  repeated Routine routines = 1;
+  repeated model.Routine routines = 1;
 }
 
 message RoutineResponse {
-  Routine routine = 1;
+  model.Routine routine = 1;
 }
+
+// Relationship many to many Routine <-> Exercise
+message AddExerciseToRoutineRequest {
+  string routine_id = 1;
+  repeated string exercise_ids = 2;
+}
+
+message AddExerciseToRoutineResponse {
+  bool success = 1;
+}
+
+message RemoveExerciseFromRoutineRequest {
+  string routine_id = 1;
+  repeated string exercise_ids = 2;
+}
+
+message RemoveExerciseFromRoutineResponse {
+  bool success = 1;
+}
+
+message GetExercisesByRoutineIdRequest {
+  string routine_id = 1;
+}
+
+message GetExercisesByRoutineIdResponse {
+  repeated model.Exercise exercises = 1;
+}
+
+
 
 service RoutineService {
   rpc CreateRoutine (CreateRoutineRequest) returns (RoutineResponse);
@@ -54,4 +71,9 @@ service RoutineService {
   rpc UpdateRoutine (UpdateRoutineRequest) returns (RoutineResponse);
   rpc DeleteRoutine (DeleteRoutineRequest) returns (google.protobuf.Empty);
   rpc GetAllRoutines (GetAllRoutinesRequest) returns (GetAllRoutinesResponse);
+
+  // Relationship many to many Routine <-> Exercise
+  rpc AddExerciseToRoutine(AddExerciseToRoutineRequest) returns (AddExerciseToRoutineResponse);
+  rpc RemoveExerciseFromRoutine (RemoveExerciseFromRoutineRequest) returns (RemoveExerciseFromRoutineResponse);
+  rpc GetExercisesByRoutineId (GetExercisesByRoutineIdRequest) returns (GetExercisesByRoutineIdResponse);
 }
