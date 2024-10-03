@@ -33,7 +33,7 @@ async function create(newExercise: Exercise) {
 
 async function getExerciseById(id: string) {
   try {
-    const response: AxiosResponse<ExerciseResponse> = await axios.get(`${API_URL_EXERCISES}/${id}`);
+    const response: AxiosResponse<ExerciseResponse> = await axios.get(`${API_URL_EXERCISES}${id}`);
     return response.data.exercise;
   } catch (error) {
     console.error(error);
@@ -53,7 +53,7 @@ async function updateExercise(updatedExercise: Exercise) {
 
 async function deleteExercise(id: string) {
   try {
-    const response: AxiosResponse<null> = await axios.delete(`${API_URL_EXERCISES}/${id}`);
+    const response: AxiosResponse<null> = await axios.delete(`${API_URL_EXERCISES}${id}`);
     return response.data;
   } catch (error) {
     console.error(error);

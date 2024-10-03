@@ -7,11 +7,12 @@ import (
 	"time"
 
 	"github.com/flavioesteves/wizer-app/broker/api/v1/models"
-	pb "github.com/flavioesteves/wizer-app/broker/proto/exercise"
+	pbe "github.com/flavioesteves/wizer-app/broker/proto/exercise"
+	pb "github.com/flavioesteves/wizer-app/broker/proto/model"
 	"github.com/gin-gonic/gin"
 )
 
-func UpdateExercise(c *gin.Context, sc pb.ExerciseServiceClient) {
+func UpdateExercise(c *gin.Context, sc pbe.ExerciseServiceClient) {
 	var requestExercise models.RequestExercise
 
 	if err := c.BindJSON(&requestExercise); err != nil {
@@ -39,7 +40,7 @@ func UpdateExercise(c *gin.Context, sc pb.ExerciseServiceClient) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	res, err := sc.UpdateExercise(ctx, &pb.UpdateExerciseRequest{Exercise: updateExercise})
+	res, err := sc.UpdateExercise(ctx, &pbe.UpdateExerciseRequest{Exercise: updateExercise})
 	if err != nil {
 		fmt.Printf("Unexpected error %v\n", err)
 	}

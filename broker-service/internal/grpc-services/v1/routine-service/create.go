@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/flavioesteves/wizer-app/broker/api/v1/models"
-	pbE "github.com/flavioesteves/wizer-app/broker/proto/exercise"
+	pb "github.com/flavioesteves/wizer-app/broker/proto/model"
 	pbR "github.com/flavioesteves/wizer-app/broker/proto/routine"
 )
 
@@ -22,9 +22,8 @@ func CreateRoutine(c *gin.Context, sc pbR.RoutineServiceClient) {
 		return
 	}
 
-	newRoutine := &pbR.Routine{
+	newRoutine := &pb.Routine{
 		ProfileId: requestRoutine.ProfileId,
-		Exercises: make([]*pbE.Exercise, 0, len(requestRoutine.Exercises)), // Pre-allocate slice to populate the fiels with the logic
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)

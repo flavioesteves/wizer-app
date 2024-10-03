@@ -69,7 +69,7 @@ const ExerciseForm: React.FC = () => {
     try {
       let response = await api.exercise.create(newExercise);
       if (response) {
-        navigate("/exercises")
+        navigate("/exercises/")
       }
     } catch (error) {
       console.error(error)
@@ -91,7 +91,7 @@ const ExerciseForm: React.FC = () => {
     try {
       let res = await api.exercise.updateExercise(updatedExercise);
       if (res) {
-        navigate("/exercises")
+        navigate("/exercises/")
       }
     } catch (error) {
       console.error(error)
