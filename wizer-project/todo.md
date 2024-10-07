@@ -3,7 +3,6 @@
 * New endpoints to routine_exercise m2m
 
 # Profile-Service
-* upd: created_by, updated_by
 
 # Migration-Service
 * upd: review types for the fields in all services
@@ -14,3 +13,16 @@
 
 # MISC
 * Optimize queries
+
+
+
+
+## FrontEnd - Profile
+# List
+* Fix: Loading Rows
+
+# Form
+* Evaluate: User auto populate and hide OR
+    change user to email and auto-populate
+* Add: Name & Last Name 
+* Fix: Label Create Button
