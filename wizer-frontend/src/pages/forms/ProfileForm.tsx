@@ -5,7 +5,7 @@ import React, {
 import { useNavigate, useParams } from "react-router-dom";
 import { Profile } from "@/models/Profile";
 import Button from "@/components/ui/button";
-//import api from "@/services/api";
+import api from "@/services/api";
 
 
 
@@ -29,8 +29,25 @@ const ProfileForm = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
 
-    console.log("Handle submit", profile)
-    navigate("/profiles")
+    const newProfile: Profile = {
+      user_id: profile.user_id,
+      gender: profile.gender,
+      birth_year: profile.birth_year,
+      height_cm: profile.height_cm,
+      weight_kg: profile.weight_kg,
+      body_fat_percentage: profile.body_fat_percentage,
+      goal: profile.goal,
+    }
+
+    try {
+
+      let response = await api.profile.create(newProfile);
+      if (response) {
+        navigate("/profiles")
+      }
+    } catch (error) {
+      console.log("Handle submit", profile)
+    }
   }
 
 
@@ -129,8 +146,8 @@ const ProfileForm = () => {
             />
           </div>
           {isNew ?
-            <Button type="submit">Create Exercise</Button> :
-            <Button type="button" >Update Exercise</Button>
+            <Button type="submit">Create Profile</Button> :
+            <Button type="button" >Update Profile</Button>
           }
         </form>
       </div>
