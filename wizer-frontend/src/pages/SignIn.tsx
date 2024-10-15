@@ -12,9 +12,6 @@ type FormData = {
 }
 
 
-
-
-
 const SignIn = () => {
   const [response, setResponse] = useState({
     isRegister: false,
@@ -71,54 +68,62 @@ const SignIn = () => {
   };
 
 
-
-
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
-      <form onSubmit={handleSubmit} className="w-full max-w-sm">
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="password" className="block text-gray-700 font-bold mb-2">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="confirmPassword" className="block text-gray-700 font-bold mb-2">
-            Confirm Password
-          </label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-          />
-          <p className="text-red-500">{passwordError}</p>
-        </div>
-        <Button type="submit">Sign Up</Button>
-        <p className="text-center mt-2">
-          Already have an account? <a href="/login" className="text-blue-500">Login</a>
-        </p>
-      </form>
-      <IsValidRegister response={response} />
+    <div className="flex justify-center items-center h-screen">
+      <div className="w-96 p-6 shadow-lg bg-white rounded-md justify-center items-center flex flex-col">
+        <img className="flex-none"
+          src="/wizer1.svg"
+          alt="wizer-logo"
+          style={{ objectFit: 'cover', maxHeight: '12rem', }}
+        />
+
+        <h1 className="text-xl font-bold">Welcome</h1>
+        <form onSubmit={handleSubmit} className="w-full max-w-sm">
+
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-gray-700 font-bold mb-2">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="confirmPassword" className="block text-gray-700 font-bold mb-2">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+            />
+            <p className="text-red-500">{passwordError}</p>
+          </div>
+          <Button className="w-full bg-black hover:bg-blue-700" type="submit">Sign Up</Button>
+          <p className="text-center mt-2">
+            Already have an account? <a href="/login" className="text-blue-500">Login</a>
+          </p>
+        </form>
+        <IsValidRegister response={response} />
+      </div>
     </div>
   )
 
