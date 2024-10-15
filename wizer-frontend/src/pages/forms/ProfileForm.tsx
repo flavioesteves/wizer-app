@@ -8,8 +8,6 @@ import Button from "@/components/ui/button";
 import api from "@/services/api";
 
 
-
-
 const ProfileForm = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
@@ -26,15 +24,18 @@ const ProfileForm = () => {
     goal: "",
   });
 
+
+
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
 
     const newProfile: Profile = {
       user_id: profile.user_id,
       gender: profile.gender,
-      birth_year: profile.birth_year,
-      height_cm: profile.height_cm,
-      weight_kg: profile.weight_kg,
+      birth_year: parseInt(profile.birth_year.toString(), 10),
+      height_cm: parseInt(profile.height_cm.toString(), 10),
+      weight_kg: parseInt(profile.weight_kg.toString(), 10),
       body_fat_percentage: profile.body_fat_percentage,
       goal: profile.goal,
     }
