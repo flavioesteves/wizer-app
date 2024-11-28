@@ -1,6 +1,6 @@
 module github.com/flavioesteves/wizer-app/migration
 
-go 1.22.3
+go 1.23
 
 require (
 	github.com/golang-migrate/migrate/v4 v4.17.1

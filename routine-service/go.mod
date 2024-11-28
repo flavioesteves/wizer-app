@@ -1,6 +1,6 @@
 module github.com/flavioesteves/wizer-app/routine
 
-go 1.23.0
+go 1.23
 
 require (
 	github.com/golang/protobuf v1.5.4
